@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CalculadO₂</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <img src="img/LOGO_CINGLES.png" class="logo left" alt="Logo El Centro Inglés">
+  🌱 CalculadO₂
+  <img src="img/logouca.png" class="logo right" alt="Logo UCA">
+</header>
+
+<a href="https://www.google.com" target="_blank" class="crown">👑</a>
+
+<div class="main-wrap">
+  <div class="container">
+    <h1>Calcula tu impacto</h1>
+    <div class="icons">
+    <span class="icon" title="Botellas" data-group="botella" onclick="showSubmenu('botella', this)">🧴</span>
+    <span class="icon" title="Coche" data-group="coche" onclick="showSubmenu('coche', this)">🚗</span>
+    <span class="icon" title="Energía" data-group="rayo" onclick="toggleSlider('rayo', this)">⚡</span>
+    <span class="icon" title="Reciclaje" data-group="contenedor" onclick="toggleSlider('contenedor', this)">🗑️</span>
+    </div>
+
+
+    <!-- SUBMENÚS -->
+    <div id="botella" class="submenu-container">
+      <button class="submenu-btn" onclick="openSlider('botellaVidrio')">Botella de vidrio</button>
+      <button class="submenu-btn" onclick="openSlider('botellaPlastico')">Botella de plástico</button>
+    </div>
+
+    <div id="coche" class="submenu-container">
+      <button class="submenu-btn" onclick="openSlider('cocheIndividual')">Transporte individual</button>
+      <button class="submenu-btn" onclick="openSlider('cocheCompartido')">Transporte compartido</button>
+    </div>
+
+    <!-- SLIDERS -->
+    <div id="botellaVidrio" class="slider-container">
+      <label>Botellas de vidrio: <span id="botellaVidrioValue">0</span></label>
+      <input type="range" min="0" max="100" value="0" oninput="updateValue('botellaVidrio', this)">
+      <button class="accept-btn" onclick="acceptValue('botellaVidrio','botella')">Aceptar</button>
+    </div>
+
+    <div id="botellaPlastico" class="slider-container">
+      <label>Botellas de plástico: <span id="botellaPlasticoValue">0</span></label>
+      <input type="range" min="0" max="100" value="0" oninput="updateValue('botellaPlastico', this)">
+      <button class="accept-btn" onclick="acceptValue('botellaPlastico','botella')">Aceptar</button>
+    </div>
+
+    <div id="cocheIndividual" class="slider-container">
+      <label>Transporte individual: <span id="cocheIndividualValue">0</span></label>
+      <input type="range" min="0" max="100" value="0" oninput="updateValue('cocheIndividual', this)">
+      <button class="accept-btn" onclick="acceptValue('cocheIndividual','coche')">Aceptar</button>
+    </div>
+
+    <div id="cocheCompartido" class="slider-container">
+      <label>Transporte compartido: <span id="cocheCompartidoValue">0</span></label>
+      <input type="range" min="0" max="100" value="0" oninput="updateValue('cocheCompartido', this)">
+      <button class="accept-btn" onclick="acceptValue('cocheCompartido','coche')">Aceptar</button>
+    </div>
+
+    <div id="rayo" class="slider-container">
+      <label>Energía: <span id="rayoValue">0</span></label>
+      <input type="range" min="0" max="100" value="0" oninput="updateValue('rayo', this)">
+      <button class="accept-btn" onclick="acceptValue('rayo','rayo')">Aceptar</button>
+    </div>
+
+    <div id="contenedor" class="slider-container">
+      <label>Reciclaje: <span id="contenedorValue">0</span></label>
+      <input type="range" min="0" max="100" value="0" oninput="updateValue('contenedor', this)">
+      <button class="accept-btn" onclick="acceptValue('contenedor','contenedor')">Aceptar</button>
+    </div>
+  </div>
+
+  <div class="sidebar">
+    <h2>Valores aceptados</h2>
+    <div class="progress-box">
+      <div class="progress-label">Progreso total</div>
+      <div class="progress-bar"><div id="progressFill" class="progress-fill"></div></div>
+    </div>
+    <ul id="valuesList" class="values-list"></ul>
+    <div class="total-box">Total: <span id="totalValue">0</span></div>
+    <button id="resetBtn" class="reset-btn" onclick="resetAll()" style="display:none;">🔄 Reiniciar todo</button>
+  </div>
+</div>
+
+<footer class="bottom">© 2025 CalculadO₂ — “Pequeñas acciones generan grandes cambios” 🌍</footer>
+
+<script>
+let total = 0;
+const maxTotal = 400;
+let values = {
+  botella: { botellaVidrio: 0, botellaPlastico: 0 },
+  coche: { cocheIndividual: 0, cocheCompartido: 0 },
+  rayo: { rayo: 0 },
+  contenedor: { contenedor: 0 }
+};
+
+// --- MARCAR ICONO ACTIVO ---
+function markActiveIcon(el) {
+  document.querySelectorAll('.icon').forEach(icon => icon.classList.remove('active'));
+  if (el) el.classList.add('active');
+}
+
+function showSubmenu(groupId, el) {
+  markActiveIcon(el);
+  document.querySelectorAll('.submenu-container').forEach(s => {
+    s.style.display = (s.id === groupId ? "block" : "none");
+  });
+  document.querySelectorAll('.slider-container').forEach(s => s.style.display = "none");
+}
+
+function openSlider(sliderId) {
+  document.querySelectorAll('.slider-container').forEach(s => {
+    s.style.display = (s.id === sliderId ? "block" : "none");
+  });
+}
+
+function toggleSlider(id, el) {
+  markActiveIcon(el);
+  document.querySelectorAll('.slider-container').forEach(slider => {
+    slider.style.display = (slider.id === id && slider.style.display !== "block") ? "block" : "none";
+  });
+  document.querySelectorAll('.submenu-container').forEach(s => s.style.display = "none");
+}
+
+function updateValue(id, range) {
+  document.getElementById(id + "Value").textContent = range.value;
+}
+
+function acceptValue(id, group) {
+  const value = parseInt(document.getElementById(id + "Value").textContent, 10);
+  if (isNaN(value)) return;
+  values[group][id] = value;
+  updateList();
+  updateTotal();
+  if(group === 'botella' || group === 'coche') {
+    document.querySelectorAll('.slider-container').forEach(s => s.style.display = "none");
+    document.getElementById(group).style.display = "block";
+  }
+}
+
+function updateList() {
+  const ul = document.getElementById("valuesList");
+  ul.innerHTML = "";
+  for (let group in values) {
+    const keysWithValue = Object.keys(values[group]).filter(k => values[group][k] > 0);
+    if (keysWithValue.length === 0) continue;
+    const groupLi = document.createElement("li");
+    const groupTitle = document.createElement("div");
+    groupTitle.textContent = group.charAt(0).toUpperCase() + group.slice(1);
+    groupTitle.className = "group-name";
+    groupLi.appendChild(groupTitle);
+    keysWithValue.forEach(key => {
+      const val = values[group][key];
+      const itemDiv = document.createElement("div");
+      itemDiv.style.display = "flex";
+      itemDiv.style.justifyContent = "space-between";
+      itemDiv.style.alignItems = "center";
+      const span = document.createElement("span");
+      span.textContent = `${key}: ${val}`;
+      const btn = document.createElement("button");
+      btn.textContent = "✖";
+      btn.className = "delete-btn";
+      btn.onclick = () => {
+        values[group][key] = 0;
+        updateList();
+        updateTotal();
+      };
+      itemDiv.appendChild(span);
+      itemDiv.appendChild(btn);
+      groupLi.appendChild(itemDiv);
+    });
+    ul.appendChild(groupLi);
+  }
+}
+
+function updateTotal() {
+  let sum = 0;
+  for (let group in values) {
+    for (let key in values[group]) sum += values[group][key];
+  }
+  total = sum;
+  document.getElementById("totalValue").textContent = total;
+  const progress = Math.min((total / maxTotal) * 100, 100);
+  document.getElementById("progressFill").style.width = progress + "%";
+
+  // Mostrar u ocultar el botón de reinicio
+  const resetBtn = document.getElementById("resetBtn");
+  if (total > 0) {
+    resetBtn.style.display = "block";
+  } else {
+    resetBtn.style.display = "none";
+  }
+}
+
+function resetAll() {
+  for (let group in values) {
+    for (let key in values[group]) {
+      values[group][key] = 0;
+    }
+  }
+  total = 0;
+  updateList();
+  updateTotal();
+  document.querySelectorAll('.icon').forEach(i => i.classList.remove('active'));
+  document.querySelectorAll('.slider-container, .submenu-container').forEach(s => s.style.display = "none");
+}
+</script>
+
+</body>
+</html>
