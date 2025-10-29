@@ -1,1 +1,0 @@
-# CalculadoraCO2
