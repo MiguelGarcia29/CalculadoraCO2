@@ -10,64 +10,85 @@
 
 <header>
   <img src="img/LOGO_CINGLES.png" class="logo left" alt="Logo El Centro Inglés">
-
   <span class="logo-text animate-logo">
     <span class="c-red">C</span>alculad<span class="co2-red">O<sub>2</sub></span>
   </span>
-
   <img src="img/logouca.png" class="logo right" alt="Logo UCA">
 </header>
-
 
 <a href="https://www.google.com" target="_blank" class="crown">👑</a>
 
 <div class="main-wrap">
   <div class="container">
     <h1>Calcula tu impacto</h1>
-    <div class="icons">
-    <span class="icon" title="Botellas" data-group="botella" onclick="showSubmenu('botella', this)">🧴</span>
-    <span class="icon" title="Coche" data-group="coche" onclick="showSubmenu('coche', this)">🚗</span>
-    <span class="icon" title="Energía" data-group="rayo" onclick="toggleSlider('rayo', this)">⚡</span>
-    <span class="icon" title="Reciclaje" data-group="contenedor" onclick="toggleSlider('contenedor', this)">🗑️</span>
-    </div>
 
+    <div class="icons">
+      <span class="icon" title="Envases" data-group="Envases" onclick="showSubmenu('Envases', this)">📦</span>
+      <span class="icon" title="Transporte" data-group="Transporte" onclick="showSubmenu('Transporte', this)">🚗</span>
+      <span class="icon" title="Energía" data-group="rayo" onclick="toggleSlider('rayo', this)">⚡</span>
+      <span class="icon" title="Reciclaje" data-group="contenedor" onclick="toggleSlider('contenedor', this)">🗑️</span>
+    </div>
 
     <!-- SUBMENÚS -->
-    <div id="botella" class="submenu-container">
-      <button class="submenu-btn" onclick="openSlider('botellaVidrio')">Botella de vidrio</button>
-      <button class="submenu-btn" onclick="openSlider('botellaPlastico')">Botella de plástico</button>
+    <div id="Envases" class="submenu-container">
+      <span class="icon" title="Botella de plástico" data-group="Envases" onclick="openSliderBelowMenu('botellaPlastico', this)">🧴</span>
+      <span class="icon" title="Botella de vidrio" data-group="Envases" onclick="openSliderBelowMenu('botellaVidrio', this)">🍾</span>
+      <span class="icon" title="Cartón" data-group="Envases" onclick="openSliderBelowMenu('Carton', this)">🧃</span>
     </div>
 
-    <div id="coche" class="submenu-container">
-      <button class="submenu-btn" onclick="openSlider('cocheIndividual')">Transporte individual</button>
-      <button class="submenu-btn" onclick="openSlider('cocheCompartido')">Transporte compartido</button>
+    <div id="Transporte" class="submenu-container">
+      <span class="icon" title="Coche individual" data-group="Transporte" onclick="openSliderBelowMenu('cocheIndividual', this)">🚗</span>
+      <span class="icon" title="Coche compartido (bus)" data-group="Transporte" onclick="openSliderBelowMenu('cocheBus', this)">🚌</span>
+      <span class="icon" title="Moto" data-group="Transporte" onclick="openSliderBelowMenu('moto', this)">🏍️</span>
+      <span class="icon" title="Camión" data-group="Transporte" onclick="openSliderBelowMenu('camion', this)">🚛</span>
+
     </div>
 
     <!-- SLIDERS -->
+    <!-- Envases -->
     <div id="botellaVidrio" class="slider-container">
-      <label>Botellas de vidrio: <span id="botellaVidrioValue">0</span></label>
+      <label>Botellas de vidrio (Kilos): <span id="botellaVidrioValue">0</span></label>
       <input type="range" min="0" max="100" value="0" oninput="updateValue('botellaVidrio', this)">
       <button class="accept-btn" onclick="acceptValue('botellaVidrio','botella')">Aceptar</button>
     </div>
 
     <div id="botellaPlastico" class="slider-container">
-      <label>Botellas de plástico: <span id="botellaPlasticoValue">0</span></label>
+      <label>Botellas de plástico (Kilos): <span id="botellaPlasticoValue">0</span></label>
       <input type="range" min="0" max="100" value="0" oninput="updateValue('botellaPlastico', this)">
       <button class="accept-btn" onclick="acceptValue('botellaPlastico','botella')">Aceptar</button>
     </div>
 
+    <div id="Carton" class="slider-container">
+      <label>Envases de cartón (Kilos): <span id="CartonValue">0</span></label>
+      <input type="range" min="0" max="100" value="0" oninput="updateValue('Carton', this)">
+      <button class="accept-btn" onclick="acceptValue('Carton','botella')">Aceptar</button>
+    </div>
+
+    <!-- Transporte -->
     <div id="cocheIndividual" class="slider-container">
-      <label>Transporte individual: <span id="cocheIndividualValue">0</span></label>
+      <label>Coche individual (KM): <span id="cocheIndividualValue">0</span></label>
       <input type="range" min="0" max="100" value="0" oninput="updateValue('cocheIndividual', this)">
       <button class="accept-btn" onclick="acceptValue('cocheIndividual','coche')">Aceptar</button>
     </div>
 
-    <div id="cocheCompartido" class="slider-container">
-      <label>Transporte compartido: <span id="cocheCompartidoValue">0</span></label>
-      <input type="range" min="0" max="100" value="0" oninput="updateValue('cocheCompartido', this)">
-      <button class="accept-btn" onclick="acceptValue('cocheCompartido','coche')">Aceptar</button>
+    <div id="cocheBus" class="slider-container">
+      <label>Coche compartido (bus) (KM): <span id="cocheBusValue">0</span></label>
+      <input type="range" min="0" max="100" value="0" oninput="updateValue('cocheBus', this)">
+      <button class="accept-btn" onclick="acceptValue('cocheBus','coche')">Aceptar</button>
     </div>
 
+    <div id="moto" class="slider-container">
+      <label>Moto (KM): <span id="motoValue">0</span></label>
+      <input type="range" min="0" max="100" value="0" oninput="updateValue('moto', this)">
+      <button class="accept-btn" onclick="acceptValue('moto','coche')">Aceptar</button>
+    </div>
+    <div id="camion" class="slider-container">
+      <label>Camión (KM): <span id="camionValue">0</span></label>
+      <input type="range" min="0" max="100" value="0" oninput="updateValue('camion', this)">
+      <button class="accept-btn" onclick="acceptValue('camion','coche')">Aceptar</button>
+    </div>
+
+    <!-- Energía y Reciclaje -->
     <div id="rayo" class="slider-container">
       <label>Energía: <span id="rayoValue">0</span></label>
       <input type="range" min="0" max="100" value="0" oninput="updateValue('rayo', this)">
@@ -79,12 +100,13 @@
       <input type="range" min="0" max="100" value="0" oninput="updateValue('contenedor', this)">
       <button class="accept-btn" onclick="acceptValue('contenedor','contenedor')">Aceptar</button>
     </div>
+
   </div>
 
   <div class="sidebar">
     <h2>Valores aceptados</h2>
     <div class="progress-box">
-      <div class="progress-label">Progreso total</div>
+      <div class="progress-label">Cantidad ahorrada</div>
       <div class="progress-bar"><div id="progressFill" class="progress-fill"></div></div>
     </div>
     <ul id="valuesList" class="values-list"></ul>
@@ -95,127 +117,7 @@
 
 <footer class="bottom">© 2025 CalculadO₂ — “Pequeñas acciones generan grandes cambios” 🌍</footer>
 
-<script>
-let total = 0;
-const maxTotal = 400;
-let values = {
-  botella: { botellaVidrio: 0, botellaPlastico: 0 },
-  coche: { cocheIndividual: 0, cocheCompartido: 0 },
-  rayo: { rayo: 0 },
-  contenedor: { contenedor: 0 }
-};
-
-// --- MARCAR ICONO ACTIVO ---
-function markActiveIcon(el) {
-  document.querySelectorAll('.icon').forEach(icon => icon.classList.remove('active'));
-  if (el) el.classList.add('active');
-}
-
-function showSubmenu(groupId, el) {
-  markActiveIcon(el);
-  document.querySelectorAll('.submenu-container').forEach(s => {
-    s.style.display = (s.id === groupId ? "block" : "none");
-  });
-  document.querySelectorAll('.slider-container').forEach(s => s.style.display = "none");
-}
-
-function openSlider(sliderId) {
-  document.querySelectorAll('.slider-container').forEach(s => {
-    s.style.display = (s.id === sliderId ? "block" : "none");
-  });
-}
-
-function toggleSlider(id, el) {
-  markActiveIcon(el);
-  document.querySelectorAll('.slider-container').forEach(slider => {
-    slider.style.display = (slider.id === id && slider.style.display !== "block") ? "block" : "none";
-  });
-  document.querySelectorAll('.submenu-container').forEach(s => s.style.display = "none");
-}
-
-function updateValue(id, range) {
-  document.getElementById(id + "Value").textContent = range.value;
-}
-
-function acceptValue(id, group) {
-  const value = parseInt(document.getElementById(id + "Value").textContent, 10);
-  if (isNaN(value)) return;
-  values[group][id] = value;
-  updateList();
-  updateTotal();
-  if(group === 'botella' || group === 'coche') {
-    document.querySelectorAll('.slider-container').forEach(s => s.style.display = "none");
-    document.getElementById(group).style.display = "block";
-  }
-}
-
-function updateList() {
-  const ul = document.getElementById("valuesList");
-  ul.innerHTML = "";
-  for (let group in values) {
-    const keysWithValue = Object.keys(values[group]).filter(k => values[group][k] > 0);
-    if (keysWithValue.length === 0) continue;
-    const groupLi = document.createElement("li");
-    const groupTitle = document.createElement("div");
-    groupTitle.textContent = group.charAt(0).toUpperCase() + group.slice(1);
-    groupTitle.className = "group-name";
-    groupLi.appendChild(groupTitle);
-    keysWithValue.forEach(key => {
-      const val = values[group][key];
-      const itemDiv = document.createElement("div");
-      itemDiv.style.display = "flex";
-      itemDiv.style.justifyContent = "space-between";
-      itemDiv.style.alignItems = "center";
-      const span = document.createElement("span");
-      span.textContent = `${key}: ${val}`;
-      const btn = document.createElement("button");
-      btn.textContent = "✖";
-      btn.className = "delete-btn";
-      btn.onclick = () => {
-        values[group][key] = 0;
-        updateList();
-        updateTotal();
-      };
-      itemDiv.appendChild(span);
-      itemDiv.appendChild(btn);
-      groupLi.appendChild(itemDiv);
-    });
-    ul.appendChild(groupLi);
-  }
-}
-
-function updateTotal() {
-  let sum = 0;
-  for (let group in values) {
-    for (let key in values[group]) sum += values[group][key];
-  }
-  total = sum;
-  document.getElementById("totalValue").textContent = total;
-  const progress = Math.min((total / maxTotal) * 100, 100);
-  document.getElementById("progressFill").style.width = progress + "%";
-
-  // Mostrar u ocultar el botón de reinicio
-  const resetBtn = document.getElementById("resetBtn");
-  if (total > 0) {
-    resetBtn.style.display = "block";
-  } else {
-    resetBtn.style.display = "none";
-  }
-}
-
-function resetAll() {
-  for (let group in values) {
-    for (let key in values[group]) {
-      values[group][key] = 0;
-    }
-  }
-  total = 0;
-  updateList();
-  updateTotal();
-  document.querySelectorAll('.icon').forEach(i => i.classList.remove('active'));
-  document.querySelectorAll('.slider-container, .submenu-container').forEach(s => s.style.display = "none");
-}
-</script>
+<script src="Scripts/funciones.js"></script>
 
 </body>
 </html>
