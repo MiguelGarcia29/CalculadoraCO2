@@ -1,0 +1,18 @@
+{
+ "Envases":
+    {
+        "Plastico": 3,
+        "Vidrio": 0.5,
+        "Carton": 0.3
+    },
+
+    "Transporte":
+    {
+        "Gasolina1l": 2.35,
+        "Diesel1l": 2.65,
+        "Camion": 1.484,
+        "Bus": 1.484,
+        "Moto": 0.07,
+        "Coche": 0.2
+    }
+}
