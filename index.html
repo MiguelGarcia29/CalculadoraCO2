@@ -4,9 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CalculadO₂</title>
-  
   <link rel="stylesheet" href="css/styles.css">
-
 </head>
 <body>
 
@@ -22,9 +20,59 @@
 
 <div class="main-wrap">
 
-  <div class="infografia-lateral">
-    <img src="img/32525e87-87e0-41c9-a57d-b52eabfc8375.png" alt="Infografía de ahorro CO₂ y agua">
-  </div>
+  <!-- === PANEL IZQUIERDO: Has evitado / También has ahorrado === -->
+  <aside class="impact-panel">
+    <div class="impact-card">
+      <h3>Has evitado:</h3>
+      <div class="impact-row">
+        <div class="impact-item">
+          <div class="circle circle-green">
+            <div class="circle-value" id="impact_co2Kg">0</div>
+          </div>
+          <div class="circle-label">kg CO₂</div>
+        </div>
+        <div class="impact-item">
+          <div class="circle circle-green">
+            <div class="circle-value" id="impact_arboles">0</div>
+          </div>
+          <div class="circle-label">árboles<br><small>absorbiendo CO₂<br>en un día</small></div>
+        </div>
+        <div class="impact-item">
+          <div class="circle circle-green">
+            <div class="circle-value" id="impact_coches">0</div>
+          </div>
+          <div class="circle-label">coches<br><small>eliminados de<br>circulación en un día</small></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="impact-card">
+      <h3>También has ahorrado:</h3>
+      <div class="impact-row">
+        <div class="impact-item">
+          <div class="circle circle-blue">
+            <div class="circle-value" id="impact_agua">0</div>
+          </div>
+          <div class="circle-label">litros de agua</div>
+        </div>
+        <div class="impact-item">
+          <div class="circle circle-blue">
+            <div class="circle-value" id="impact_duchas">0</div>
+          </div>
+          <div class="circle-label">duchas<br><small>de 10 minutos</small></div>
+        </div>
+        <div class="impact-item">
+          <div class="circle circle-blue">
+            <div class="circle-value" id="impact_camisetas">0</div>
+          </div>
+          <div class="circle-label">camisetas<br><small>de algodón</small></div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <!-- === FIN PANEL IZQUIERDO === -->
+
+  
 
   <div class="container">
     <h1>Calcula tu impacto</h1>
@@ -107,10 +155,7 @@
 
   <div class="sidebar">
     <h2>Valores aceptados</h2>
-    <div class="progress-box">
-      <div class="progress-label">Cantidad ahorrada</div>
-      <div class="progress-bar"><div id="progressFill" class="progress-fill"></div></div>
-    </div>
+    
     <ul id="valuesList" class="values-list"></ul>
     <div class="total-box">Total: <span id="totalValue">0</span></div>
     <button id="resetBtn" class="reset-btn" onclick="resetAll()" style="display:none;">🔄 Reiniciar todo</button>
