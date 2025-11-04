@@ -1,3 +1,6 @@
+/* =================================== */
+/* 1. ESTILOS GENERALES Y FUENTES      */
+/* =================================== */
 body {
     font-family: "Poppins", Arial, sans-serif;
     background: linear-gradient(180deg, #f0f5f3, #e9f9ed);
@@ -10,7 +13,9 @@ body {
     min-height: 100vh;
 }
 
-/* --- ENCABEZADO --- */
+/* =================================== */
+/* 2. HEADER (ENCABEZADO)              */
+/* =================================== */
 header {
     position: fixed;
     top: 0;
@@ -27,7 +32,7 @@ header {
     z-index: 10;
 }
 
-/* --- Logo CalculadO₂ Animado --- */
+/* --- Logos del Header --- */
 .logo-text {
   font-weight: 700;
   font-size: 28px;
@@ -36,20 +41,20 @@ header {
   color: white;
 }
 
-.c-red {
-  color: #4be708;
-}
+.c-red { color: #4be708; }
+.co2-red { color: #4be708; }
+.co2-red sub { font-size: 0.6em; vertical-align: sub; }
 
-.co2-red {
-  color: #4be708;
+.logo {
+    position: absolute;
+    top: 8px;
+    width: 80px;
+    height: auto;
 }
+.logo.left { left: 25px; width: 140px; }
+.logo.right { right: 25px; width: 50px; }
 
-.co2-red sub {
-  font-size: 0.6em;
-  vertical-align: sub;
-}
-
-/* --- Animación ecológica con brillo verde --- */
+/* --- Animación Logo --- */
 .animate-logo {
   animation: fadeInGlow 3s ease-in-out infinite alternate;
   text-shadow: 
@@ -86,62 +91,19 @@ header {
   }
 }
 
-/* --- Posición de logos laterales --- */
-.logo {
-    position: absolute;
-    top: 8px;
-    width: 80px;
-    height: auto;
-}
+/* =================================== */
+/* 3. ESTRUCTURA (LAYOUT)              */
+/* =================================== */
 
-.logo.left {
-    left: 25px;
-    width: 140px;
-}
-
-.logo.right {
-    right: 25px;
-    width: 50px;
-}
-
-/* --- ICONO CORONA --- */
-.crown {
-    position: fixed;
-    top: 105px;
-    right: 55px;
-    font-size: 40px;
-    cursor: pointer;
-    color: gold;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
-    animation: crownGlow 2s infinite alternate ease-in-out;
-    z-index: 5;
-    transition: transform 0.3s ease;
-}
-
-.crown:hover {
-    transform: scale(1.2) rotate(8deg);
-}
-
-@keyframes crownGlow {
-    from {
-        text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
-    }
-
-    to {
-        text-shadow: 0 0 25px rgba(255, 223, 0, 1);
-    }
-}
-
-/* --- CONTENEDORES --- */
 .main-wrap {
     display: flex;
     margin-top: 140px;
     gap: 30px;
     margin-bottom: 80px;
-    /* Añadimos align-items: flex-start para alinear los elementos al inicio */
-    align-items: flex-start;
+    align-items: flex-start; /* Alinea paneles al top */
 }
 
+/* --- Panel Central (Calculadora) --- */
 .container {
     background-color: #ffffff;
     border-radius: 20px;
@@ -151,10 +113,44 @@ header {
     text-align: center;
     transition: transform 0.3s ease;
 }
+.container:hover { transform: scale(1.02); }
 
-.container:hover {
-    transform: scale(1.02);
+/* --- Panel Derecho (Resultados) --- */
+.sidebar {
+    width: 260px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+/* --- Panel Izquierdo (Infografía) --- */
+.infografia-lateral {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 380px;
+  height: auto;
+  transition: transform 0.3s ease;
+}
+.infografia-lateral:hover { transform: scale(1.02); }
+.infografia-lateral img {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+}
+
+/* =================================== */
+/* 4. COMPONENTES: CALCULADORA         */
+/* =================================== */
 
 h1 {
     color: #00437a;
@@ -162,7 +158,7 @@ h1 {
     font-size: 26px;
 }
 
-/* --- ICONOS --- */
+/* --- Iconos (Nivel 1 y 2) --- */
 .icons {
     display: flex;
     flex-wrap: wrap;
@@ -177,13 +173,18 @@ h1 {
     transition: transform 0.25s ease, color 0.25s ease;
     margin: 5px;
 }
-
 .icon:hover {
     transform: scale(1.2);
     color: #00a86b; /* verde brillante */
 }
+.icon.active {
+  background-color: rgba(0, 67, 122, 0.15);
+  border-radius: 12px;
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1);
+  transform: scale(1.1);
+}
 
-/* --- MENÚS Y SLIDERS --- */
+/* --- Contenedores de Sliders y Submenús (Nivel 2 y 3) --- */
 .slider-container,
 .submenu-container {
     display: none;
@@ -197,17 +198,11 @@ h1 {
 }
 
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-5px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
+/* --- Sliders (Range Inputs) --- */
 label {
     font-weight: 500;
     color: #00437a;
@@ -222,7 +217,6 @@ input[type="range"] {
     outline: none;
     margin-top: 8px;
 }
-
 input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none;
     width: 30px;
@@ -233,7 +227,7 @@ input[type="range"]::-webkit-slider-thumb {
     cursor: pointer;
 }
 
-/* --- BOTONES --- */
+/* --- Botones --- */
 .accept-btn,
 .submenu-btn {
     margin-top: 10px;
@@ -245,24 +239,18 @@ input[type="range"]::-webkit-slider-thumb {
     cursor: pointer;
     font-size: 14px;
 }
-
 .accept-btn:hover,
-.submenu-btn:hover {
-    background-color: #008c5a;
+.submenu-btn:hover { background-color: #008c5a; }
+
+.submenu-btn {
+    display: block;
+    width: 80%;
+    margin: 5px auto;
 }
 
-/* --- SIDEBAR --- */
-.sidebar {
-    width: 260px;
-    background-color: #ffffff;
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-    height: fit-content;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+/* =================================== */
+/* 5. COMPONENTES: SIDEBAR (Resultados)*/
+/* =================================== */
 
 .sidebar h2 {
     color: #00437a;
@@ -270,7 +258,84 @@ input[type="range"]::-webkit-slider-thumb {
     margin-bottom: 15px;
 }
 
-/* --- LISTAS --- */
+/* --- INICIO: NUEVOS ESTILOS PARA RESULTADOS VISUALES --- */
+.results-display {
+    width: 100%;
+    margin-bottom: 25px;
+    padding: 15px;
+    background-color: #f6faf8; /* Color de fondo ligero */
+    border-radius: 12px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+    text-align: left; /* Alinea los textos a la izquierda */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.result-row {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+    gap: 10px;
+    align-items: flex-start; /* Alinea los elementos al inicio de la fila */
+}
+
+.result-label {
+    font-weight: 600;
+    color: #00437a;
+    font-size: 14px;
+    flex-basis: 100%; /* Ocupa toda la línea para la etiqueta */
+    margin-bottom: 5px;
+}
+
+.result-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1 80px; /* Permite que los ítems crezcan o encojan */
+    min-width: 80px; /* Ancho mínimo para cada círculo */
+    text-align: center;
+}
+
+.result-circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+}
+
+.result-number {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.result-subtext {
+    font-size: 10px;
+    color: #555;
+    line-height: 1.2;
+}
+
+/* Colores específicos para los círculos */
+.circle-kgco2, .circle-arboles, .circle-coches {
+    background-color: #4be708; /* Verde */
+}
+
+.circle-litrosagua, .circle-duchas, .circle-camisetas {
+    background-color: #008be7; /* Azul */
+}
+/* --- FIN: NUEVOS ESTILOS PARA RESULTADOS VISUALES --- */
+
+
+/* --- Lista de Valores --- */
 .values-list {
     list-style: none;
     padding: 0;
@@ -282,7 +347,6 @@ input[type="range"]::-webkit-slider-thumb {
     background-color: #f6faf8;
     width: 100%;
 }
-
 .values-list li {
     padding: 8px 12px;
     border-bottom: 1px solid #ddd;
@@ -293,14 +357,11 @@ input[type="range"]::-webkit-slider-thumb {
     flex-direction: column;
     text-align: left;
 }
-
 .group-name {
     font-weight: 600;
     color: #00437a;
     margin-top: 5px;
 }
-
-/* --- BOTONES Y PROGRESO --- */
 .delete-btn {
     background-color: #ff5600;
     border: none;
@@ -311,62 +372,9 @@ input[type="range"]::-webkit-slider-thumb {
     font-size: 12px;
     margin-top: 5px;
 }
+.delete-btn:hover { background-color: #e04e00; }
 
-.delete-btn:hover {
-    background-color: #e04e00;
-}
-
-.progress-box {
-    width: 100%;
-    margin-bottom: 20px;
-    background-color: #f6faf8;
-    border-radius: 10px;
-    padding: 10px;
-}
-
-.progress-label {
-    font-size: 14px;
-    margin-bottom: 5px;
-    color: #00437a;
-    font-weight: 500;
-}
-
-.progress-bar {
-    width: 100%;
-    height: 25px;
-    background-color: #ddd;
-    border-radius: 12px;
-    overflow: hidden;
-    position: relative;
-}
-
-.progress-fill {
-    position: absolute;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(135deg, #8de4af 0%, #00c46a 50%, #00a86b 100%);
-    border-radius: 10px;
-    background-size: 200% 200%;
-    animation: liquidMove 3s linear infinite;
-    transition: width 0.4s ease;
-}
-
-@keyframes liquidMove {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
+/* --- Total y Reset --- */
 .total-box {
     padding: 15px;
     border-radius: 10px;
@@ -377,35 +385,6 @@ input[type="range"]::-webkit-slider-thumb {
     font-weight: 600;
     width: 100%;
 }
-
-/* --- FOOTER --- */
-footer.bottom {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #00437a;
-    color: white;
-    text-align: center;
-    padding: 15px 0;
-    font-size: 16px;
-    box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.15);
-}
-
-/* --- VARIOS --- */
-.submenu-btn {
-    display: block;
-    width: 80%;
-    margin: 5px auto;
-}
-
-.icon.active {
-  background-color: rgba(0, 67, 122, 0.15);
-  border-radius: 12px;
-  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1);
-  transform: scale(1.1);
-}
-
 .reset-btn {
   margin-top: 15px;
   padding: 10px 20px;
@@ -419,13 +398,50 @@ footer.bottom {
   font-size: 15px;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
-
 .reset-btn:hover {
   background-color: #009b5d;
   transform: scale(1.03);
 }
 
-/* --- RESPONSIVE --- */
+/* =================================== */
+/* 6. OTROS ELEMENTOS (Corona, Footer) */
+/* =================================== */
+
+.crown {
+    position: fixed;
+    top: 105px;
+    right: 55px;
+    font-size: 40px;
+    cursor: pointer;
+    color: gold;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+    animation: crownGlow 2s infinite alternate ease-in-out;
+    z-index: 5;
+    transition: transform 0.3s ease;
+}
+.crown:hover { transform: scale(1.2) rotate(8deg); }
+
+@keyframes crownGlow {
+    from { text-shadow: 0 0 10px rgba(255, 215, 0, 0.7); }
+    to { text-shadow: 0 0 25px rgba(255, 223, 0, 1); }
+}
+
+footer.bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #00437a;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 16px;
+    box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* =================================== */
+/* 7. RESPONSIVE DESIGN (Móviles)      */
+/* =================================== */
 @media (max-width: 768px) {
   .main-wrap {
     flex-direction: column;
@@ -434,14 +450,16 @@ footer.bottom {
     margin-top: 120px;
   }
 
-  .container, .sidebar {
+  .container, .sidebar, .infografia-lateral {
     width: 90%;
     max-width: 400px;
   }
-
-  .icon {
-    font-size: 36px;
+  
+  .infografia-lateral {
+    order: -1; /* Muestra la infografía primero en móvil */
   }
+
+  .icon { font-size: 36px; }
 
   header {
     font-size: 22px;
@@ -454,42 +472,118 @@ footer.bottom {
     font-size: 30px;
   }
 
-  .reset-btn {
-    font-size: 14px;
+  .reset-btn { font-size: 14px; }
+
+
+  .result-row {
+      flex-direction: row; 
+      justify-content: center; 
   }
+
+  .result-item {
+      flex-basis: 30%; 
+      min-width: 70px;
+  }
+
+  .result-circle {
+      width: 60px;
+      height: 60px;
+      font-size: 10px;
+  }
+  .result-number {
+      font-size: 16px;
+  }
+  .result-subtext {
+      font-size: 9px;
+  }
+
+}
+/* --- PANEL DE IMPACTO (IZQUIERDO) --- */
+.impact-panel {
+  width: 340px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: stretch;
 }
 
-/* --- INFOGRAFÍA LATERAL --- */
-.infografia-lateral {
-  background-color: #ffffff;
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+.impact-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+.impact-card h3 {
+  color: #00437a;
+  margin: 6px 0 14px 0;
+  font-size: 18px;
+}
+
+.impact-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.impact-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 0;
+}
+
+.circle {
+  width: 86px;
+  height: 86px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 380px; /* Ajusta el ancho si es necesario */
-  height: auto;
-  transition: transform 0.3s ease;
-  /* height: fit-content; (Opcional, para que coincida con el sidebar) */
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+  margin-bottom: 8px;
 }
 
-.infografia-lateral:hover {
-  transform: scale(1.02);
+.circle-green {
+  background: linear-gradient(180deg,#4ff056,#0abb3f);
+  color: white;
 }
 
-.infografia-lateral img {
-  width: 100%;
-  height: auto;
-  border-radius: 15px;
+.circle-blue {
+  background: linear-gradient(180deg,#34a8ff,#0a66d9);
+  color: white;
 }
 
-/* --- Responsive para móviles (para infografía) --- */
-@media (max-width: 768px) {
-  .infografia-lateral {
-    width: 90%;
-    max-width: 400px;
-    margin-top: 0; /* Ajustado para que siga el flujo normal en columna */
-    order: -1; /* (Opcional) Si quieres que aparezca ANTES que la calculadora en móvil */
+.circle-value {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.circle-label {
+  font-size: 12px;
+  color: #00437a;
+  font-weight: 600;
+}
+
+.circle-label small {
+  display: block;
+  font-weight: 400;
+  font-size: 11px;
+  color: #3b5362;
+  margin-top: 4px;
+}
+
+/* Responsive: apilar si pantalla pequeña */
+@media (max-width: 1100px) {
+  .main-wrap { gap: 18px; }
+  .impact-panel {
+    width: 100%;
+    order: -1;
   }
+  .infografia-lateral { order: 0; }
+  .container { order: 1; }
+  .sidebar { order: 2; }
 }
