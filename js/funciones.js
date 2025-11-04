@@ -190,3 +190,20 @@ function resetAll() {
   document.querySelectorAll('.icon').forEach(i => i.classList.remove('active'));
   document.querySelectorAll('.slider-container, .submenu-container').forEach(s => s.style.display = "none");
 }
+
+//PORTADA 
+
+document.addEventListener("DOMContentLoaded", () => {
+  // --- PORTADA ---
+  const banderaES = document.getElementById("banderaES");
+  const banderaEN = document.getElementById("banderaEN");
+
+  if (banderaES && banderaEN) {
+    banderaES.addEventListener("click", () => {
+      window.location.href = "index.html?lang=es";
+    });
+
+    banderaEN.addEventListener("click", () => {
+      window.location.href = "index.html?lang=en";
+    });
+  }});
