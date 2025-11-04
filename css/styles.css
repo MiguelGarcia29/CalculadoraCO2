@@ -138,6 +138,8 @@ header {
     margin-top: 140px;
     gap: 30px;
     margin-bottom: 80px;
+    /* Añadimos align-items: flex-start para alinear los elementos al inicio */
+    align-items: flex-start;
 }
 
 .container {
@@ -454,5 +456,40 @@ footer.bottom {
 
   .reset-btn {
     font-size: 14px;
+  }
+}
+
+/* --- INFOGRAFÍA LATERAL --- */
+.infografia-lateral {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 380px; /* Ajusta el ancho si es necesario */
+  height: auto;
+  transition: transform 0.3s ease;
+  /* height: fit-content; (Opcional, para que coincida con el sidebar) */
+}
+
+.infografia-lateral:hover {
+  transform: scale(1.02);
+}
+
+.infografia-lateral img {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+}
+
+/* --- Responsive para móviles (para infografía) --- */
+@media (max-width: 768px) {
+  .infografia-lateral {
+    width: 90%;
+    max-width: 400px;
+    margin-top: 0; /* Ajustado para que siga el flujo normal en columna */
+    order: -1; /* (Opcional) Si quieres que aparezca ANTES que la calculadora en móvil */
   }
 }

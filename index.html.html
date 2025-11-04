@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CalculadO₂</title>
-  <link rel="stylesheet" href="styles.css">
+  
+  <link rel="stylesheet" href="css/styles.css">
+
 </head>
 <body>
 
@@ -19,6 +21,11 @@
 <a href="https://www.google.com" target="_blank" class="crown">👑</a>
 
 <div class="main-wrap">
+
+  <div class="infografia-lateral">
+    <img src="img/32525e87-87e0-41c9-a57d-b52eabfc8375.png" alt="Infografía de ahorro CO₂ y agua">
+  </div>
+
   <div class="container">
     <h1>Calcula tu impacto</h1>
 
@@ -29,7 +36,6 @@
       <span class="icon" title="Reciclaje" data-group="contenedor" onclick="toggleSlider('contenedor', this)">🗑️</span>
     </div>
 
-    <!-- SUBMENÚS -->
     <div id="Envases" class="submenu-container">
       <span class="icon" title="Botella de plástico" data-group="Envases" onclick="openSliderBelowMenu('botellaPlastico', this)">🧴</span>
       <span class="icon" title="Botella de vidrio" data-group="Envases" onclick="openSliderBelowMenu('botellaVidrio', this)">🍾</span>
@@ -41,11 +47,8 @@
       <span class="icon" title="Coche compartido (bus)" data-group="Transporte" onclick="openSliderBelowMenu('cocheBus', this)">🚌</span>
       <span class="icon" title="Moto" data-group="Transporte" onclick="openSliderBelowMenu('moto', this)">🏍️</span>
       <span class="icon" title="Camión" data-group="Transporte" onclick="openSliderBelowMenu('camion', this)">🚛</span>
-
     </div>
 
-    <!-- SLIDERS -->
-    <!-- Envases -->
     <div id="botellaVidrio" class="slider-container">
       <label>Botellas de vidrio (Kilos): <span id="botellaVidrioValue">0</span></label>
       <input type="range" min="0" max="100" value="0" oninput="updateValue('botellaVidrio', this)">
@@ -64,7 +67,6 @@
       <button class="accept-btn" onclick="acceptValue('Carton','botella')">Aceptar</button>
     </div>
 
-    <!-- Transporte -->
     <div id="cocheIndividual" class="slider-container">
       <label>Coche individual (KM): <span id="cocheIndividualValue">0</span></label>
       <input type="range" min="0" max="100" value="0" oninput="updateValue('cocheIndividual', this)">
@@ -82,13 +84,13 @@
       <input type="range" min="0" max="100" value="0" oninput="updateValue('moto', this)">
       <button class="accept-btn" onclick="acceptValue('moto','coche')">Aceptar</button>
     </div>
+
     <div id="camion" class="slider-container">
       <label>Camión (KM): <span id="camionValue">0</span></label>
       <input type="range" min="0" max="100" value="0" oninput="updateValue('camion', this)">
       <button class="accept-btn" onclick="acceptValue('camion','coche')">Aceptar</button>
     </div>
 
-    <!-- Energía y Reciclaje -->
     <div id="rayo" class="slider-container">
       <label>Energía: <span id="rayoValue">0</span></label>
       <input type="range" min="0" max="100" value="0" oninput="updateValue('rayo', this)">
@@ -117,7 +119,7 @@
 
 <footer class="bottom">© 2025 CalculadO₂ — “Pequeñas acciones generan grandes cambios” 🌍</footer>
 
-<script src="Scripts/funciones.js"></script>
+<script src="js/funciones.js"></script>
 
 </body>
 </html>
