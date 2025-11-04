@@ -9,7 +9,6 @@
     "Transporte":
     {
         "Gasolina1l": 2.35,
-        "Diesel1l": 2.65,
         "Camion": 1.484,
         "Bus": 1.484,
         "Moto": 0.07,
