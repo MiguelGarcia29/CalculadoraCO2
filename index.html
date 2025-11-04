@@ -7,7 +7,19 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-
+ <!-- Fondo animado con círculos flotantes -->
+<ul class="circles">
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+  <li></li>
+</ul>
 <header>
   <img src="img/LOGO_CINGLES.png" class="logo left" alt="Logo El Centro Inglés">
   <span class="logo-text animate-logo">
@@ -19,6 +31,61 @@
 <a href="https://www.google.com" target="_blank" class="crown">👑</a>
 
 <div class="main-wrap">
+
+  <!-- === PANEL IZQUIERDO: Has evitado / También has ahorrado === -->
+  <aside class="impact-panel">
+    <div class="impact-card">
+      <h3>Has evitado:</h3>
+      <div class="impact-row">
+        <div class="impact-item">
+          <div class="circle circle-green">
+            <div class="circle-value" id="impact_co2Kg">0</div>
+          </div>
+          <div class="circle-label">kg CO₂</div>
+        </div>
+        <div class="impact-item">
+          <div class="circle circle-green">
+            <div class="circle-value" id="impact_arboles">0</div>
+          </div>
+          <div class="circle-label">árboles<br><small>absorbiendo CO₂<br>en un día</small></div>
+        </div>
+        <div class="impact-item">
+          <div class="circle circle-green">
+            <div class="circle-value" id="impact_coches">0</div>
+          </div>
+          <div class="circle-label">coches<br><small>eliminados de<br>circulación en un día</small></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="impact-card">
+      <h3>También has ahorrado:</h3>
+      <div class="impact-row">
+        <div class="impact-item">
+          <div class="circle circle-blue">
+            <div class="circle-value" id="impact_agua">0</div>
+          </div>
+          <div class="circle-label">litros de agua</div>
+        </div>
+        <div class="impact-item">
+          <div class="circle circle-blue">
+            <div class="circle-value" id="impact_duchas">0</div>
+          </div>
+          <div class="circle-label">duchas<br><small>de 10 minutos</small></div>
+        </div>
+        <div class="impact-item">
+          <div class="circle circle-blue">
+            <div class="circle-value" id="impact_camisetas">0</div>
+          </div>
+          <div class="circle-label">camisetas<br><small>de algodón</small></div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <!-- === FIN PANEL IZQUIERDO === -->
+
+  
+
   <div class="container">
     <h1>Calcula tu impacto</h1>
 
@@ -29,7 +96,6 @@
       <span class="icon" title="Reciclaje" data-group="contenedor" onclick="toggleSlider('contenedor', this)">🗑️</span>
     </div>
 
-    <!-- SUBMENÚS -->
     <div id="Envases" class="submenu-container">
       <span class="icon" title="Botella de plástico" data-group="Envases" onclick="openSliderBelowMenu('botellaPlastico', this)">🧴</span>
       <span class="icon" title="Botella de vidrio" data-group="Envases" onclick="openSliderBelowMenu('botellaVidrio', this)">🍾</span>
@@ -41,11 +107,8 @@
       <span class="icon" title="Coche compartido (bus)" data-group="Transporte" onclick="openSliderBelowMenu('cocheBus', this)">🚌</span>
       <span class="icon" title="Moto" data-group="Transporte" onclick="openSliderBelowMenu('moto', this)">🏍️</span>
       <span class="icon" title="Camión" data-group="Transporte" onclick="openSliderBelowMenu('camion', this)">🚛</span>
-
     </div>
 
-    <!-- SLIDERS -->
-    <!-- Envases -->
     <div id="botellaVidrio" class="slider-container">
       <label>Botellas de vidrio (Kilos): <span id="botellaVidrioValue">0</span></label>
       <input type="range" min="0" max="100" value="0" oninput="updateValue('botellaVidrio', this)">
@@ -64,7 +127,6 @@
       <button class="accept-btn" onclick="acceptValue('Carton','botella')">Aceptar</button>
     </div>
 
-    <!-- Transporte -->
     <div id="cocheIndividual" class="slider-container">
       <label>Coche individual (KM): <span id="cocheIndividualValue">0</span></label>
       <input type="range" min="0" max="100" value="0" oninput="updateValue('cocheIndividual', this)">
@@ -82,13 +144,13 @@
       <input type="range" min="0" max="100" value="0" oninput="updateValue('moto', this)">
       <button class="accept-btn" onclick="acceptValue('moto','coche')">Aceptar</button>
     </div>
+
     <div id="camion" class="slider-container">
       <label>Camión (KM): <span id="camionValue">0</span></label>
       <input type="range" min="0" max="100" value="0" oninput="updateValue('camion', this)">
       <button class="accept-btn" onclick="acceptValue('camion','coche')">Aceptar</button>
     </div>
 
-    <!-- Energía y Reciclaje -->
     <div id="rayo" class="slider-container">
       <label>Energía: <span id="rayoValue">0</span></label>
       <input type="range" min="0" max="100" value="0" oninput="updateValue('rayo', this)">
@@ -105,10 +167,7 @@
 
   <div class="sidebar">
     <h2>Valores aceptados</h2>
-    <div class="progress-box">
-      <div class="progress-label">Cantidad ahorrada</div>
-      <div class="progress-bar"><div id="progressFill" class="progress-fill"></div></div>
-    </div>
+    
     <ul id="valuesList" class="values-list"></ul>
     <div class="total-box">Total: <span id="totalValue">0</span></div>
     <button id="resetBtn" class="reset-btn" onclick="resetAll()" style="display:none;">🔄 Reiniciar todo</button>
@@ -121,4 +180,3 @@
 
 </body>
 </html>
-
