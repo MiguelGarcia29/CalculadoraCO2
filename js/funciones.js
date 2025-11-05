@@ -190,7 +190,3 @@ function resetAll() {
   document.querySelectorAll('.icon').forEach(i => i.classList.remove('active'));
   document.querySelectorAll('.slider-container, .submenu-container').forEach(s => s.style.display = "none");
 }
-
-//PORTADA 
-
-  const banderaES = document.getElementById("banderaES");
