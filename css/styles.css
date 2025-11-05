@@ -166,17 +166,24 @@ h1 {
     margin-bottom: 25px;
 }
 
+/* ICONO POR JUANI */
 .icon {
-    font-size: 40px;
-    cursor: pointer;
-    color: #00067a;
-    transition: transform 0.25s ease, color 0.25s ease;
-    margin: 5px;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  transition: transform 0.2s;
 }
+
 .icon:hover {
-    transform: scale(1.2);
-    color: #00a86b; /* verde brillante */
+  transform: scale(1.1);
 }
+
+.icon-img {
+  width: 50px;
+  height: 50px;
+  vertical-align: middle;
+}
+
 .icon.active {
   background-color: rgba(0, 67, 122, 0.15);
   border-radius: 12px;
@@ -1115,3 +1122,6 @@ footer.bottom {
         background-position: 0% 50%;
     }
 }
+
+
+
