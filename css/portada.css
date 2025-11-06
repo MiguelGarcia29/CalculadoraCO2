@@ -21,16 +21,64 @@
 }
 
 .portada-titulo {
-  font-size: 5.5rem;       /* 🔹 más grande */
+  font-size: 5.5rem;
   font-weight: 700;
-  margin-bottom: 4rem;     /* 🔹 más separación respecto a las banderas */
+  margin-bottom: 4rem;
   text-shadow: 0 0 25px rgba(0,0,0,0.3);
   letter-spacing: 1.5px;
   animation: fadeInUp 2s ease;
 }
 
-.co2-red {
-  color: #ff5252;
+/* Aplicar el estilo verde del header */
+.portada .c-red,
+.portada .co2-red {
+    color: #4be708 !important;
+}
+
+.portada .logo-text {
+  color: white;
+  animation: fadeInGlow 3s ease-in-out infinite alternate;
+  text-shadow:
+    0 0 12px rgba(0, 255, 80, 0.6),
+    0 0 25px rgba(0, 255, 120, 0.4),
+    0 0 40px rgba(0, 255, 100, 0.25);
+  transition: all 0.3s ease;
+}
+
+.portada .animate-logo {
+    animation: fadeInGlow 3s ease-in-out infinite alternate;
+    text-shadow:
+      0 0 12px rgba(0, 255, 80, 0.6),
+      0 0 25px rgba(0, 255, 120, 0.4),
+      0 0 40px rgba(0, 255, 100, 0.25);
+    transition: all 0.3s ease;
+}
+
+@keyframes fadeInGlow {
+  0% {
+    opacity: 0.85;
+    transform: scale(1);
+    text-shadow:
+      0 0 8px rgba(0, 255, 100, 0.35),
+      0 0 15px rgba(0, 255, 80, 0.25),
+      0 0 30px rgba(0, 255, 120, 0.15);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+    text-shadow:
+      0 0 18px rgba(0, 255, 100, 0.9),
+      0 0 35px rgba(0, 255, 120, 0.6),
+      0 0 60px rgba(0, 255, 80, 0.4);
+  }
+  100% {
+    opacity: 0.9;
+    transform: scale(1);
+    text-shadow:
+      0 0 10px rgba(0, 255, 80, 0.5),
+      0 0 25px rgba(0, 255, 120, 0.35),
+      0 0 45px rgba(0, 255, 100, 0.25);
+  }
 }
 
 .banderas {
@@ -40,8 +88,8 @@
 }
 
 .bandera {
-  width: 60px;      /* 🔹 antes 100px */
-  height: 40px;     /* 🔹 antes 70px */
+  width: 60px;
+  height: 40px;
   cursor: pointer;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0,0,0,0.4);
