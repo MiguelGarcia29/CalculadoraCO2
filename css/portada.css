@@ -1,0 +1,59 @@
+/* --- PORTADA --- */
+.portada {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  background: linear-gradient(-45deg, #0d47a1, #b71c1c, #1565c0, #c62828);
+  background-size: 400% 400%;
+  animation: gradientMove 10s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.portada-titulo {
+  font-size: 5.5rem;       /* 🔹 más grande */
+  font-weight: 700;
+  margin-bottom: 4rem;     /* 🔹 más separación respecto a las banderas */
+  text-shadow: 0 0 25px rgba(0,0,0,0.3);
+  letter-spacing: 1.5px;
+  animation: fadeInUp 2s ease;
+}
+
+.co2-red {
+  color: #ff5252;
+}
+
+.banderas {
+  display: flex;
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+.bandera {
+  width: 60px;      /* 🔹 antes 100px */
+  height: 40px;     /* 🔹 antes 70px */
+  cursor: pointer;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bandera:hover {
+  transform: scale(1.12);
+  box-shadow: 0 0 20px rgba(255,255,255,0.6);
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
+}

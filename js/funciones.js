@@ -1,3 +1,4 @@
+
 let total = 0; // Total mostrado
 const maxTotal = 400; // Sirve para calcular el porcentaje de la barra de progreso
 
