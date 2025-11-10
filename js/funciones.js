@@ -41,7 +41,7 @@ const keyMap = {
     camion: { group: 'Transporte', key: 'Camion' }
   },
   rayo: {
-    rayo: null // sin coeficiente en JSON por ahora
+    rayo: {group: 'Energia', key: 'Luz'} // sin coeficiente en JSON por ahora
   },
   contenedor: {
     contenedor: null // sin coeficiente en JSON por ahora
