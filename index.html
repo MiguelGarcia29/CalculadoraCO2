@@ -59,7 +59,7 @@
     </div>
 
     <div class="impact-card">
-      <h3>También has ahorrado:</h3>
+      <h3>Has gastado:</h3>
       <div class="impact-row">
         <div class="impact-item">
           <div class="circle circle-blue">
@@ -88,13 +88,21 @@
 
   <div class="container">
     <h1>Calcula tu impacto</h1>
+    <!-- 🔽 INTERRUPTOR DE MODO RECICLAR / GASTAR -->
+  <div class="mode-switch-container">
+    <span id="modeLabel">♻️ Modo: Reciclar</span>
+    <label class="switch">
+      <input type="checkbox" id="modeToggle" onchange="toggleModeSwitch()">
+      <span class="slider"></span>
+    </label>
+  </div>
 
-    <div class="icons">
-      <img src="img/iconos/carton.png" class="icon" title="Envases" data-group="Envases" onclick="showSubmenu('Envases', this)" alt="Envases">
-      <img src="img/iconos/coche.png" class="icon" title="Transporte" data-group="Transporte" onclick="showSubmenu('Transporte', this)" alt="Transporte">
-      <img src="img/iconos/energia.png" class="icon" title="Energía" data-group="rayo" onclick="toggleSlider('rayo', this)" alt="Energía">
-      <img src="img/iconos/basura.png" class="icon" title="Reciclaje" data-group="contenedor" onclick="toggleSlider('contenedor', this)" alt="Reciclaje">
-    </div>
+  <div class="icons">
+    <img src="img/iconos/carton.png" class="icon" title="Envases" data-group="Envases" onclick="showSubmenu('Envases', this)" alt="Envases">
+    <img src="img/iconos/coche.png" class="icon" title="Transporte" data-group="Transporte" onclick="showSubmenu('Transporte', this)" alt="Transporte">
+    <img src="img/iconos/energia.png" class="icon" title="Energía" data-group="rayo" onclick="toggleSlider('rayo', this)" alt="Energía">
+    <img src="img/iconos/basura.png" class="icon" title="Reciclaje" data-group="contenedor" onclick="toggleSlider('contenedor', this)" alt="Reciclaje">
+  </div>
 
     <!-- SUBMENÚS -->
     <div id="Envases" class="submenu-container">
@@ -167,6 +175,8 @@
       <button class="accept-btn" onclick="acceptValue('contenedor','contenedor')">Aceptar</button>
     </div>
   </div>
+
+  
 
   <div class="sidebar">
     <h2>Valores aceptados</h2>
