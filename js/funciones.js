@@ -249,7 +249,10 @@ function resetAll() {
 //  <!-- BOTÓN -->
 let estadoBoton = false; // si es true -> modo reciclar | si es false -> modo consumir
 const modeToggle = document.getElementById("modeToggle");
-
+modeToggle.onclick = () => {
+  estadoBoton = !estadoBoton;
+  applyModeState(estadoBoton);
+};
 function applyModeState(recycle){
   const modeLabel = document.getElementById('modeLabel');
   total = totalValue();
