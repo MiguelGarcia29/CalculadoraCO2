@@ -217,8 +217,8 @@ function updateTotal() {
   if(estadoBoton){ // Modo reciclaje, modelado temporal.
     let co2_kg = total; // Se copia el total en co2kg evitado
     document.getElementById("impact_co2Kg").textContent = co2_kg;
+    recycleFunctions(total);
     total = 0; // Se pone en cero ya que se est
-    // recycleFunctions();
   } else{
     consumeFunctions(total);
   }
@@ -252,12 +252,12 @@ const modeToggle = document.getElementById("modeToggle");
 
 function applyModeState(recycle){
   const modeLabel = document.getElementById('modeLabel');
+  total = totalValue();
   if (recycle){
     if (modeLabel) modeLabel.textContent = '♻️ Modo Reciclar';
-    recycleFunctions();
+    recycleFunctions(total);
   } else {
     if (modeLabel) modeLabel.textContent = '🔥 Modo Consumo';
-    total = totalValue();
     consumeFunctions(total);
   }
 }
@@ -294,6 +294,8 @@ if (modeToggle) {
 // Función que se ejecuta cuando el botón se enciende (Funciones de reciclaje)
 function recycleFunctions(total) {
   console.log("✅ Modo ON activado");
+  trees(total);
+  cars(total);
 }
 // Función que se ejecuta cuando el botón se apaga (Funciones de consumo)
 function consumeFunctions(total) { 
@@ -313,24 +315,21 @@ function liters(total){
     document.getElementById("impact_agua").textContent = 0;
   }
 }
-
-
 function showers(total){
   if(total > 0){
       litros = total / 10;
       duchas = litros / 100;
-      aprox_duchas = Math.round(duchas); // Esto sirve para un redondeo a 2 decimales.
+      aprox_duchas = Math.round(duchas * 100) / 100; // Esto sirve para un redondeo.
 
       document.getElementById("impact_duchas").textContent = aprox_duchas;
   }else{
       document.getElementById("impact_duchas").textContent = 0;
   }
 }
-
 function cotton_shirts(total){
   if(total > 0){
   camisetas = total / 3.87;
-  aprox_camisetas = Math.round(camisetas) // Esto sirve para un redondeo a 2 decimales.
+  aprox_camisetas = Math.round(camisetas * 100) / 100; // Esto sirve para un redondeo.
 
   document.getElementById("impact_camisetas").textContent = aprox_camisetas;
   }else{
@@ -339,3 +338,23 @@ function cotton_shirts(total){
 }
 
 
+//  <!-- RecycleFunctions -->
+
+function trees(total){
+  if(total > 0){
+  arboles = total / 0.0685;
+  aprox_arboles = Math.round(arboles); // Esto sirve para un redondeo.
+  document.getElementById("impact_arboles").textContent = aprox_arboles;
+  }else{
+    document.getElementById("impact_arboles").textContent = 0;
+  }
+}
+function cars(total){
+  if(total > 0){
+  coches = total / 13;
+  aprox_coches = Math.round(coches); // Esto sirve para un redondeo.
+  document.getElementById("impact_coches").textContent = aprox_coches;
+  }else{
+    document.getElementById("impact_coches").textContent = 0;
+  }   
+}
