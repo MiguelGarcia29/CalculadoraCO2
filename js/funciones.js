@@ -41,7 +41,7 @@ const keyMap = {
     camion: { group: 'Transporte', key: 'Camion' }
   },
   rayo: {
-    rayo: {group: 'Energia', key: 'Luz'} // sin coeficiente en JSON por ahora
+    rayo: {group: 'Energia', key: 'Luz'} 
   },
   contenedor: {
     contenedor: null // sin coeficiente en JSON por ahora
@@ -69,7 +69,45 @@ function computeEmissionFor(group, id, count) { // Calcula la emisión ya con el
     console.warn(`Coeficiente no encontrado para ${group}.${id} — usando 0 como fallback`);
     return 0;
   }
+  
+  // Para el grupo 'botella' el contador representa número de unidades
+  // y necesitamos convertir a kg usando la tabla `Pesos` antes de aplicar
+  // el coeficiente (que en database.json para Envases está en kg).
+  if (group === 'botella') {
+    const weightKg = computeWeightFor(group, id, count);
+    return Number(weightKg) * Number(coef);
+  }
+
   return Number(count) * Number(coef);
+}
+
+// --- CONVERSIÓN: unidades de botella -> kg ---
+function computeWeightFor(group, id, count) {
+  const weight = getWeight(group, id);
+
+  if (weight === undefined) {
+    console.warn(`Peso no encontrado para ${group}.${id} — usando 0 como fallback`);
+    return 0; // Fallback en 0
+  }
+
+  // `count` puede ser número de botellas; devolver kg
+  return Number(count) * Number(weight);
+}
+
+function getWeight(group, id) {
+  // Sólo aplicable para envases (grupo UI 'botella')
+  const mapGroup = keyMap[group];
+  if (!mapGroup || group !== 'botella') return undefined; // Solo queremos calcular peso de envases.
+  const mapping = mapGroup[id];
+  if (!mapping) return undefined;
+  const jsonKey = mapping.key; // p.ej. 'Plastico', 'Vidrio', 'Carton'
+
+  // En database.json los pesos están en la sección 'Pesos' y usan claves como 'PesoPlastico'
+  const pesoKey = 'Peso' + jsonKey; // ej. 'PesoPlastico'
+  if (!coefficients || !coefficients['Pesos'] || coefficients['Pesos'][pesoKey] === undefined) return undefined;
+
+  const w = coefficients['Pesos'][pesoKey];
+  return (w === undefined) ? undefined : Number(w);
 }
 
 
@@ -120,7 +158,6 @@ function acceptValue(id, group) { // El usuario confirma el valor
   values[group][id] = value;
   updateList();
   updateTotal();
-  // No ocultar sliders automáticamente
 }
  
 
