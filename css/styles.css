@@ -234,6 +234,72 @@ input[type="range"]::-webkit-slider-thumb {
     cursor: pointer;
 }
 
+/* CONTENEDOR DEL SWITCH DE MODO DEBAJO DEL BLOQUE CENTRAL */
+.mode-switch-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px; /* separa del contenido de la calculadora */
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+}
+
+/* SWITCH BASE */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* DESLIZADOR */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #e74c3c; /* rojo = gastar */
+  border-radius: 34px;
+  transition: 0.4s;
+}
+
+.slider::before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  border-radius: 50%;
+  transition: 0.4s;
+}
+
+/* SWITCH ACTIVADO */
+.switch input:checked + .slider {
+  background-color: #00a86b; /* verde = reciclar */
+}
+
+.switch input:checked + .slider::before {
+  transform: translateX(26px);
+}
+
+/* TEXTO AL LADO DEL SWITCH */
+#modeLabel {
+  min-width: 140px;
+  text-align: left;
+  font-weight: 600;
+}
+
+
+
 /* --- Botones --- */
 .accept-btn,
 .submenu-btn {
@@ -254,6 +320,71 @@ input[type="range"]::-webkit-slider-thumb {
     width: 80%;
     margin: 5px auto;
 }
+/* ============================== */
+/*  INTERRUPTOR DE MODO RECICLAR  */
+/* ============================== */
+.mode-switch-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px 0;
+    padding: 10px 20px;
+    border-radius: 12px;
+    background-color: #e6f7ee;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+#modeLabel {
+    color: #00437a;
+    font-weight: 600;
+    font-size: 16px;
+    min-width: 140px;
+    text-align: left;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #e74c3c;
+    border-radius: 34px;
+    transition: 0.4s;
+}
+
+.slider::before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.4s;
+}
+
+.switch input:checked + .slider {
+    background-color: #00a86b;
+}
+
+.switch input:checked + .slider::before {
+    transform: translateX(26px);
+}
+
 
 /* =================================== */
 /* 5. COMPONENTES: SIDEBAR (Resultados)*/
