@@ -303,7 +303,7 @@ function recycleFunctions(total) {
 // Función que se ejecuta cuando el botón se apaga (Funciones de consumo)
 function consumeFunctions(total) { 
   liters(total);
-  showers(total);
+  toilets(total);
   cotton_shirts(total);
 }
 
@@ -318,13 +318,13 @@ function liters(total){
     document.getElementById("impact_agua").textContent = 0;
   }
 }
-function showers(total){
+function toilets(total){
   if(total > 0){
       litros = total / 10;
-      duchas = litros / 100;
-      aprox_duchas = Math.round(duchas * 100) / 100; // Esto sirve para un redondeo.
+      cisterna = litros / 10;
+      aprox_cisternas = Math.round(cisterna * 100) / 100; // Esto sirve para un redondeo.
 
-      document.getElementById("impact_duchas").textContent = aprox_duchas;
+      document.getElementById("impact_duchas").textContent = aprox_cisternas;
   }else{
       document.getElementById("impact_duchas").textContent = 0;
   }
