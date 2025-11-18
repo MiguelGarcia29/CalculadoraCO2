@@ -41,7 +41,7 @@ const keyMap = {
     camion: { group: 'Transporte', key: 'Camion' }
   },
   rayo: {
-    rayo: {group: 'Energia', key: 'Luz'} 
+    rayo: {group: 'Energia', key: 'Luz'} // sin coeficiente en JSON por ahora
   },
   contenedor: {
     contenedor: null // sin coeficiente en JSON por ahora
@@ -79,7 +79,7 @@ function computeEmissionFor(group, id, count) { // Calcula la emisión ya con el
   }
 
   return Number(count) * Number(coef);
-}
+} 
 
 // --- CONVERSIÓN: unidades de botella -> kg ---
 function computeWeightFor(group, id, count) {
@@ -148,6 +148,20 @@ function openSliderBelowMenu(sliderId, el) {
   // NO ocultar el submenú
 }
 
+function totalValue(){
+let sum = 0;
+  for (let group in values) {
+    for (let key in values[group]) {
+      const count = Number(values[group][key]) || 0;
+      // sumar la emisión calculada (usa mapping y coeficientes cargados)
+      sum += computeEmissionFor(group, key, count);
+    }
+  }
+  total = Math.round(sum * 100) / 100; // Esto sirve para un redondeo a 2 decimales.
+
+  return total;
+}
+
 function updateValue(id, range) {
   document.getElementById(id + "Value").textContent = range.value;
 }
@@ -157,7 +171,8 @@ function acceptValue(id, group) { // El usuario confirma el valor
   if (!Number.isFinite(value)) return;
   values[group][id] = value;
   updateList();
-  updateTotal();
+  updateTotal(); // Solo calcula si está en OFF.
+  // No ocultar sliders automáticamente
 }
  
 
@@ -198,15 +213,15 @@ function updateList() {
 
 function updateTotal() {
   let sum = 0;
-  for (let group in values) {
-    for (let key in values[group]) {
-      const count = Number(values[group][key]) || 0;
-      // sumar la emisión calculada (usa mapping y coeficientes cargados)
-      sum += computeEmissionFor(group, key, count);
-    }
+  total = totalValue();
+  if(estadoBoton){ // Modo reciclaje, modelado temporal.
+    let co2_kg = total; // Se copia el total en co2kg evitado
+    document.getElementById("impact_co2Kg").textContent = co2_kg;
+    recycleFunctions(total);
+    total = 0; // Se pone en cero ya que se est
+  } else{
+    consumeFunctions(total);
   }
-
-  total = Math.round(sum * 100) / 100; // Esto sirve para un redondeo a 2 decimales.
   document.getElementById("totalValue").textContent = total;
   const progress = Math.min((total / maxTotal) * 100, 100);
   document.getElementById("progressFill").style.width = progress + "%";
@@ -222,8 +237,127 @@ function resetAll() {
     }
   }
   total = 0;
+  
   updateList();
   updateTotal();
+  consumeFunctions(total); // Reiniciar impactos de consumo a 0
+  recycleFunctions(total); // Reiniciar impactos de reciclaje a 0
   document.querySelectorAll('.icon').forEach(i => i.classList.remove('active'));
   document.querySelectorAll('.slider-container, .submenu-container').forEach(s => s.style.display = "none");
+}
+
+//  <!-- BOTÓN -->
+let estadoBoton = false; // si es true -> modo reciclar | si es false -> modo consumir
+const modeToggle = document.getElementById("modeToggle");
+modeToggle.onclick = () => {
+  estadoBoton = !estadoBoton;
+  applyModeState(estadoBoton);
+};
+function applyModeState(recycle){
+  const modeLabel = document.getElementById('modeLabel');
+  total = totalValue();
+  if (recycle){
+    if (modeLabel) modeLabel.textContent = '♻️ Modo Reciclar';
+    recycleFunctions(total);
+  } else {
+    if (modeLabel) modeLabel.textContent = '🔥 Modo Consumo';
+    consumeFunctions(total);
+  }
+}
+
+function toggleBoton(event){
+  // Si recibimos un evento change del checkbox, usar su checked; si no, leer el checkbox o invertir el estado
+  if (event && event.target && typeof event.target.checked === 'boolean') {
+    estadoBoton = !!event.target.checked;
+  } else if (modeToggle) {
+    estadoBoton = !!modeToggle.checked;
+  } else {
+    estadoBoton = !estadoBoton;
+  }
+  // Si este cambio viene de una interacción del usuario (evento 'change'), recargar la página
+  // Esto evita recargas durante la inicialización donde no hay event.
+  if (event && event.type === 'change') {
+    resetAll();
+  }
+  applyModeState(estadoBoton);
+}
+
+if (modeToggle) {
+  // Inicializar desde el checkbox y escuchar cambios
+  estadoBoton = !!modeToggle.checked;
+  // NOTA: el HTML ya tiene onchange="toggleBoton()" en el checkbox, evitamos añadir otro listener
+  applyModeState(estadoBoton);
+} else {
+  // No hay checkbox en el HTML: dejar por defecto en Consumo
+  console.warn('No se encontró #modeToggle — usando modo Consumo por defecto');
+  estadoBoton = false;
+  applyModeState(estadoBoton);
+}
+
+// Función que se ejecuta cuando el botón se enciende (Funciones de reciclaje)
+function recycleFunctions(total) {
+  console.log("✅ Modo ON activado");
+  trees(total);
+  cars(total);
+}
+// Función que se ejecuta cuando el botón se apaga (Funciones de consumo)
+function consumeFunctions(total) { 
+  liters(total);
+  showers(total);
+  cotton_shirts(total);
+}
+
+//  <!-- ConsumeFunctions -->
+function liters(total){
+  if(total > 0){
+  litros = total / 10;
+  aprox_litros = Math.round(litros * 100) / 100; // Esto sirve para un redondeo a 2 decimales.
+
+    document.getElementById("impact_agua").textContent = aprox_litros;
+  }else{
+    document.getElementById("impact_agua").textContent = 0;
+  }
+}
+function showers(total){
+  if(total > 0){
+      litros = total / 10;
+      duchas = litros / 100;
+      aprox_duchas = Math.round(duchas * 100) / 100; // Esto sirve para un redondeo.
+
+      document.getElementById("impact_duchas").textContent = aprox_duchas;
+  }else{
+      document.getElementById("impact_duchas").textContent = 0;
+  }
+}
+function cotton_shirts(total){
+  if(total > 0){
+  camisetas = total / 3.87;
+  aprox_camisetas = Math.round(camisetas * 100) / 100; // Esto sirve para un redondeo.
+
+  document.getElementById("impact_camisetas").textContent = aprox_camisetas;
+  }else{
+      document.getElementById("impact_camisetas").textContent = 0;
+  }
+}
+
+
+//  <!-- RecycleFunctions -->
+
+function trees(total){
+  if(total > 0){
+  arboles = total / 0.0685;
+  aprox_arboles = Math.round(arboles); // Esto sirve para un redondeo.
+  document.getElementById("impact_arboles").textContent = aprox_arboles;
+  }else{
+    document.getElementById("impact_arboles").textContent = 0;
+  }
+}
+function cars(total){
+  if(total > 0){
+  coches = total / 13;
+  aprox_coches = Math.round(coches); // Esto sirve para un redondeo.
+  document.getElementById("impact_coches").textContent = aprox_coches;
+  }else{
+    document.getElementById("impact_coches").textContent = 0;
+  }   
 }
