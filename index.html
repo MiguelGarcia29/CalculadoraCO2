@@ -1,195 +1,258 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CalculadO₂</title>
   <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
- <!-- Fondo animado con círculos flotantes -->
-<ul class="circles">
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-  <li></li>
-</ul>
-<header>
-  <img src="img/LOGO_CINGLES.png" class="logo left" alt="Logo El Centro Inglés">
-  <span class="logo-text animate-logo">
-    <span class="c-red">C</span>alculad<span class="co2-red">O<sub>2</sub></span>
-  </span>
-  <img src="img/logouca.png" class="logo right" alt="Logo UCA">
-</header>
+  <!-- Fondo animado con círculos flotantes -->
+  <ul class="circles">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+  <header>
+    <img src="img/LOGO_CINGLES.png" class="logo left" alt="Logo El Centro Inglés">
+    <span class="logo-text animate-logo">
+      <span class="c-red">C</span>alculad<span class="co2-red">O<sub>2</sub></span>
+    </span>
+    <img src="img/logouca.png" class="logo right" alt="Logo UCA">
+  </header>
 
-<a href="https://www.google.com" target="_blank" class="crown">👑</a>
+  <!-- HE DESACTIVADO LA CORONA -->
+  <a href="https://www.google.com" target="_blank" class="crown" hidden>👑</a>
 
-<div class="main-wrap">
+  <div class="main-wrap">
 
-  <!-- === PANEL IZQUIERDO: Has evitado / También has ahorrado === -->
-  <aside class="impact-panel">
-    <div class="impact-card">
-      <h3>Has evitado:</h3>
-      <div class="impact-row">
-        <div class="impact-item">
-          <div class="circle circle-green">
-            <div class="circle-value" id="impact_co2Kg">0</div>
+    <!-- === PANEL IZQUIERDO: Has evitado / También has ahorrado === -->
+    <aside class="impact-panel">
+      <div class="impact-card">
+        <h3>Has evitado:</h3>
+        <div class="impact-row">
+          <div class="impact-item">
+            <div class="circle circle-green">
+              <div class="circle-value" id="impact_co2Kg">0</div>
+            </div>
+            <div class="circle-label">kg CO₂</div>
           </div>
-          <div class="circle-label">kg CO₂</div>
-        </div>
-        <div class="impact-item">
-          <div class="circle circle-green">
-            <div class="circle-value" id="impact_arboles">0</div>
+          <div class="impact-item">
+            <div class="circle circle-green">
+              <div class="circle-value" id="impact_arboles">0</div>
+            </div>
+            <div class="circle-label">árboles<br><small>absorbiendo CO₂<br>en un día</small></div>
           </div>
-          <div class="circle-label">árboles<br><small>absorbiendo CO₂<br>en un día</small></div>
-        </div>
-        <div class="impact-item">
-          <div class="circle circle-green">
-            <div class="circle-value" id="impact_coches">0</div>
+          <div class="impact-item">
+            <div class="circle circle-green">
+              <div class="circle-value" id="impact_coches">0</div>
+            </div>
+            <div class="circle-label">coches<br><small>eliminados de<br>circulación en un día</small></div>
           </div>
-          <div class="circle-label">coches<br><small>eliminados de<br>circulación en un día</small></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="impact-card">
-      <h3>Has gastado:</h3>
-      <div class="impact-row">
-        <div class="impact-item">
-          <div class="circle circle-blue">
-            <div class="circle-value" id="impact_agua">0</div>
-          </div>
-          <div class="circle-label">litros de agua</div>
-        </div>
-        <div class="impact-item">
-          <div class="circle circle-blue">
-            <div class="circle-value" id="impact_duchas">0</div>
-          </div>
-          <div class="circle-label">duchas<br><small>de 10 minutos</small></div>
-        </div>
-        <div class="impact-item">
-          <div class="circle circle-blue">
-            <div class="circle-value" id="impact_camisetas">0</div>
-          </div>
-          <div class="circle-label">camisetas<br><small>de algodón</small></div>
         </div>
       </div>
-    </div>
-  </aside>
-  <!-- === FIN PANEL IZQUIERDO === -->
 
-  
+      <div class="impact-card">
+        <h3>Has gastado:</h3>
+        <div class="impact-row">
+          <div class="impact-item">
+            <div class="circle circle-blue">
+              <div class="circle-value" id="impact_agua">0</div>
+            </div>
+            <div class="circle-label">litros de agua</div>
+          </div>
+          <div class="impact-item">
+            <div class="circle circle-blue">
+              <div class="circle-value" id="impact_duchas">0</div>
+            </div>
+            <div class="circle-label">duchas<br><small>de 10 minutos</small></div>
+          </div>
+          <div class="impact-item">
+            <div class="circle circle-blue">
+              <div class="circle-value" id="impact_camisetas">0</div>
+            </div>
+            <div class="circle-label">camisetas<br><small>de algodón</small></div>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <!-- === FIN PANEL IZQUIERDO === -->
 
-  <div class="container">
-    <h1>Calcula tu impacto</h1>
-    <!-- 🔽 INTERRUPTOR DE MODO RECICLAR / GASTAR -->
-  <div class="mode-switch-container">
-    <span id="modeLabel">♻️ Modo: Reciclar</span>
-    <label class="switch">
-  <input type="checkbox" id="modeToggle" onchange="toggleBoton(event)">
-      <span class="slider"></span>
-    </label>
-  </div>
 
-  <div class="icons">
-    <img src="img/iconos/carton.png" class="icon" title="Envases" data-group="Envases" onclick="showSubmenu('Envases', this)" alt="Envases">
-    <img src="img/iconos/coche.png" class="icon" title="Transporte" data-group="Transporte" onclick="showSubmenu('Transporte', this)" alt="Transporte">
-    <img src="img/iconos/energia.png" class="icon" title="Energía" data-group="rayo" onclick="toggleSlider('rayo', this)" alt="Energía">
-    <img src="img/iconos/basura.png" class="icon" title="Reciclaje" data-group="contenedor" onclick="toggleSlider('contenedor', this)" alt="Reciclaje">
-  </div>
 
-    <!-- SUBMENÚS -->
-    <div id="Envases" class="submenu-container">
-      <img src="img/iconos/botella_agua.png" class="icon" title="Botella de plástico" data-group="Envases" onclick="openSliderBelowMenu('botellaPlastico', this)" alt="Botella de plástico">
-      <img src="img/iconos/botela_crista.png" class="icon" title="Botella de vidrio" data-group="Envases" onclick="openSliderBelowMenu('botellaVidrio', this)" alt="Botella de vidrio">
-      <img src="img/iconos/carton.png" class="icon" title="Cartón" data-group="Envases" onclick="openSliderBelowMenu('Carton', this)" alt="Cartón">
-    </div>
+    <div class="container">
+      <h1>Calcula tu impacto</h1>
+      <!-- 🔽 INTERRUPTOR DE MODO RECICLAR / GASTAR -->
+      <div class="mode-switch-container">
+        <span id="modeLabel">♻️ Modo: Reciclar</span>
+        <label class="switch">
+          <input type="checkbox" id="modeToggle" onchange="toggleBoton(event)">
+          <span class="slider"></span>
+        </label>
+      </div>
 
-    <div id="Transporte" class="submenu-container">
-      <img src="img/iconos/coche.png" class="icon" title="Coche individual" data-group="Transporte" onclick="openSliderBelowMenu('cocheIndividual', this)" alt="Coche individual">
-      <img src="img/iconos/autobus.png" class="icon" title="Coche compartido (bus)" data-group="Transporte" onclick="openSliderBelowMenu('cocheBus', this)" alt="Bus">
-      <img src="img/iconos/moto.png" class="icon" title="Moto" data-group="Transporte" onclick="openSliderBelowMenu('moto', this)" alt="Moto">
+      <div class="icons">
+        <img src="img/iconos/carton.png" class="icon" title="Envases" data-group="Envases"
+          onclick="showSubmenu('Envases', this)" alt="Envases">
+        <img src="img/iconos/coche.png" class="icon" title="Transporte" data-group="Transporte"
+          onclick="showSubmenu('Transporte', this)" alt="Transporte">
+        <img src="img/iconos/energia.png" class="icon" title="Energía" data-group="rayo"
+          onclick="toggleSlider('rayo', this)" alt="Energía">
+        <img src="img/iconos/basura.png" class="icon" title="Reciclaje" data-group="contenedor"
+          onclick="showSubmenu('contenedor', this)" alt="Reciclaje">
+      </div>
+
+      <!-- SUBMENÚS -->
+      <div id="Envases" class="submenu-container">
+        <img src="img/iconos/botella_agua.png" class="icon" title="Botella de plástico" data-group="Envases"
+          onclick="openSliderBelowMenu('botellaPlastico', this)" alt="Botella de plástico">
+        <img src="img/iconos/botela_crista.png" class="icon" title="Botella de vidrio" data-group="Envases"
+          onclick="openSliderBelowMenu('botellaVidrio', this)" alt="Botella de vidrio">
+        <img src="img/iconos/carton.png" class="icon" title="Cartón" data-group="Envases"
+          onclick="openSliderBelowMenu('Carton', this)" alt="Cartón">
+      </div>
+
+      <div id="Transporte" class="submenu-container">
+        <img src="img/iconos/coche.png" class="icon" title="Coche" data-group="Transporte"
+          onclick="openSliderBelowMenu('cocheIndividual', this)" alt="Coche individual">
+        <img src="img/iconos/autobus.png" class="icon" title="Autobus" data-group="Transporte"
+          onclick="openSliderBelowMenu('cocheBus', this)" alt="Bus">
+        <img src="img/iconos/moto.png" class="icon" title="Moto" data-group="Transporte"
+          onclick="openSliderBelowMenu('moto', this)" alt="Moto">
+        <!--
       <img src="img/iconos/camion.png" class="icon" title="Camión" data-group="Transporte" onclick="openSliderBelowMenu('camion', this)" alt="Camión">
+      -->
+      </div>
+
+      <!-- SLIDERS -->
+      <div id="botellaVidrio" class="slider-container">
+        <label>Botellas de vidrio (Unidades): <span id="botellaVidrioValue">0</span></label>
+        <input type="range" min="0" max="100" value="0" oninput="updateValue('botellaVidrio', this)">
+        <button class="accept-btn" onclick="acceptValue('botellaVidrio','botella')">Aceptar</button>
+      </div>
+
+      <div id="botellaPlastico" class="slider-container">
+        <label>Botellas de plástico (Unidades): <span id="botellaPlasticoValue">0</span></label>
+        <input type="range" min="0" max="100" value="0" oninput="updateValue('botellaPlastico', this)">
+        <button class="accept-btn" onclick="acceptValue('botellaPlastico','botella')">Aceptar</button>
+      </div>
+
+      <div id="Carton" class="slider-container">
+        <label>Envases de cartón (Unidades): <span id="CartonValue">0</span></label>
+        <input type="range" min="0" max="100" value="0" oninput="updateValue('Carton', this)">
+        <button class="accept-btn" onclick="acceptValue('Carton','botella')">Aceptar</button>
+      </div>
+
+      <!-- Transporte -->
+      <div id="cocheIndividual" class="slider-container">
+        <label>Coche (KM): <span id="cocheIndividualValue">0</span></label>
+        <input type="range" min="0" max="100" value="0" oninput="updateValue('cocheIndividual', this)">
+        <button class="accept-btn" onclick="acceptValue('cocheIndividual','coche')">Aceptar</button>
+      </div>
+
+      <div id="cocheBus" class="slider-container">
+        <label>Autobus (KM): <span id="cocheBusValue">0</span></label>
+        <input type="range" min="0" max="100" value="0" oninput="updateValue('cocheBus', this)">
+        <button class="accept-btn" onclick="acceptValue('cocheBus','coche')">Aceptar</button>
+      </div>
+
+      <div id="moto" class="slider-container">
+        <label>Moto (KM): <span id="motoValue">0</span></label>
+        <input type="range" min="0" max="100" value="0" oninput="updateValue('moto', this)">
+        <button class="accept-btn" onclick="acceptValue('moto','coche')">Aceptar</button>
+      </div>
+
+      <div id="camion" class="slider-container">
+        <label>Camión (KM): <span id="camionValue">0</span></label>
+        <input type="range" min="0" max="100" value="0" oninput="updateValue('camion', this)">
+        <button class="accept-btn" onclick="acceptValue('camion','coche')">Aceptar</button>
+      </div>
+
+      <!-- Energía y Reciclaje -->
+      <!-- Energía -->
+      <div id="rayo" class="slider-container">
+
+        <label>Horas con la luz encendida: <span id="horasLuzValue">0</span></label>
+        <input type="range" min="0" max="24" value="0" oninput="updateValue('horasLuz', this)">
+        <p></p>
+        <label>Horas con la televisión puesta: <span id="horasTVValue">0</span></label>
+        <input type="range" min="0" max="24" value="0" oninput="updateValue('horasTV', this)">
+        <p></p>
+        <label>Horas con el aire acondicionado puesto: <span id="horasACValue">0</span></label>
+        <input type="range" min="0" max="24" value="0" oninput="updateValue('horasAC', this)">
+
+        <label style="
+    margin-right: 15px;">
+          <input type="checkbox" id="placasSolares"> Tengo placas solares
+        </label>
+
+        <button class="accept-btn" onclick="acceptEnergiaValues()">Aceptar</button>
+      </div>
+
+      <!--
+      <div id="contenedor" class="slider-container">
+        <label>Reciclaje: <span id="contenedorValue">0</span></label>
+        <input type="range" min="0" max="100" value="0" oninput="updateValue('contenedor', this)">
+        <button class="accept-btn" onclick="acceptValue('contenedor','contenedor')">Aceptar</button>
+      </div>
+      -->
+
+      <div id="contenedor" class="submenu-container">
+        <img src="img/iconos/botella_agua.png" class="icon" title="Botella de plástico" data-group="contenedor"
+          onclick="openSliderBelowMenu('botellaPlasticoRec', this)" alt="Botella de plástico">
+        <img src="img/iconos/botela_crista.png" class="icon" title="Botella de vidrio" data-group="contenedor"
+          onclick="openSliderBelowMenu('botellaVidrioRec', this)" alt="Botella de vidrio">
+        <img src="img/iconos/carton.png" class="icon" title="Cartón" data-group="contenedor"
+          onclick="openSliderBelowMenu('CartonRec', this)" alt="Cartón">
+      </div>
+
+      <!-- SLIDERS para reciclaje -->
+      <div id="botellaVidrioRec" class="slider-container">
+        <label>Botellas de vidrio (Unidades): <span id="botellaVidrioRecValue">0</span></label>
+        <input type="range" min="0" max="100" value="0" oninput="updateValue('botellaVidrioRec', this)">
+        <button class="accept-btn" onclick="acceptValue('botellaVidrioRec','contenedor')">Aceptar</button>
+      </div>
+
+      <div id="botellaPlasticoRec" class="slider-container">
+        <label>Botellas de plástico (Unidades): <span id="botellaPlasticoRecValue">0</span></label>
+        <input type="range" min="0" max="100" value="0" oninput="updateValue('botellaPlasticoRec', this)">
+        <button class="accept-btn" onclick="acceptValue('botellaPlasticoRec','contenedor')">Aceptar</button>
+      </div>
+
+      <div id="CartonRec" class="slider-container">
+        <label>Envases de cartón (Unidades): <span id="CartonRecValue">0</span></label>
+        <input type="range" min="0" max="100" value="0" oninput="updateValue('CartonRec', this)">
+        <button class="accept-btn" onclick="acceptValue('CartonRec','contenedor')">Aceptar</button>
+      </div>
+
+
+
     </div>
 
-    <!-- SLIDERS -->
-    <div id="botellaVidrio" class="slider-container">
-      <label>Botellas de vidrio (Kilos): <span id="botellaVidrioValue">0</span></label>
-      <input type="range" min="0" max="100" value="0" oninput="updateValue('botellaVidrio', this)">
-      <button class="accept-btn" onclick="acceptValue('botellaVidrio','botella')">Aceptar</button>
-    </div>
 
-    <div id="botellaPlastico" class="slider-container">
-      <label>Botellas de plástico (Kilos): <span id="botellaPlasticoValue">0</span></label>
-      <input type="range" min="0" max="100" value="0" oninput="updateValue('botellaPlastico', this)">
-      <button class="accept-btn" onclick="acceptValue('botellaPlastico','botella')">Aceptar</button>
-    </div>
 
-    <div id="Carton" class="slider-container">
-      <label>Envases de cartón (Kilos): <span id="CartonValue">0</span></label>
-      <input type="range" min="0" max="100" value="0" oninput="updateValue('Carton', this)">
-      <button class="accept-btn" onclick="acceptValue('Carton','botella')">Aceptar</button>
-    </div>
+    <div class="sidebar">
+      <h2>Valores aceptados</h2>
 
-    <!-- Transporte -->
-    <div id="cocheIndividual" class="slider-container">
-      <label>Coche individual (KM): <span id="cocheIndividualValue">0</span></label>
-      <input type="range" min="0" max="100" value="0" oninput="updateValue('cocheIndividual', this)">
-      <button class="accept-btn" onclick="acceptValue('cocheIndividual','coche')">Aceptar</button>
-    </div>
-
-    <div id="cocheBus" class="slider-container">
-      <label>Coche compartido (bus) (KM): <span id="cocheBusValue">0</span></label>
-      <input type="range" min="0" max="100" value="0" oninput="updateValue('cocheBus', this)">
-      <button class="accept-btn" onclick="acceptValue('cocheBus','coche')">Aceptar</button>
-    </div>
-
-    <div id="moto" class="slider-container">
-      <label>Moto (KM): <span id="motoValue">0</span></label>
-      <input type="range" min="0" max="100" value="0" oninput="updateValue('moto', this)">
-      <button class="accept-btn" onclick="acceptValue('moto','coche')">Aceptar</button>
-    </div>
-
-    <div id="camion" class="slider-container">
-      <label>Camión (KM): <span id="camionValue">0</span></label>
-      <input type="range" min="0" max="100" value="0" oninput="updateValue('camion', this)">
-      <button class="accept-btn" onclick="acceptValue('camion','coche')">Aceptar</button>
-    </div>
-
-    <!-- Energía y Reciclaje -->
-    <div id="rayo" class="slider-container">
-      <label>Energía: <span id="rayoValue">0</span></label>
-      <input type="range" min="0" max="100" value="0" oninput="updateValue('rayo', this)">
-      <button class="accept-btn" onclick="acceptValue('rayo','rayo')">Aceptar</button>
-    </div>
-
-    <div id="contenedor" class="slider-container">
-      <label>Reciclaje: <span id="contenedorValue">0</span></label>
-      <input type="range" min="0" max="100" value="0" oninput="updateValue('contenedor', this)">
-      <button class="accept-btn" onclick="acceptValue('contenedor','contenedor')">Aceptar</button>
+      <ul id="valuesList" class="values-list"></ul>
+      <div class="total-box">Total: <span id="totalValue">0</span></div>
+      <button id="resetBtn" class="reset-btn" onclick="resetAll()" style="display:none;">🔄 Reiniciar todo</button>
     </div>
   </div>
 
-  
+  <footer class="bottom">© 2025 CalculadO₂ — “Pequeñas acciones generan grandes cambios” 🌍</footer>
 
-  <div class="sidebar">
-    <h2>Valores aceptados</h2>
-    
-    <ul id="valuesList" class="values-list"></ul>
-    <div class="total-box">Total: <span id="totalValue">0</span></div>
-    <button id="resetBtn" class="reset-btn" onclick="resetAll()" style="display:none;">🔄 Reiniciar todo</button>
-  </div>
-</div>
-
-<footer class="bottom">© 2025 CalculadO₂ — “Pequeñas acciones generan grandes cambios” 🌍</footer>
-
-<script src="js/funciones.js"></script>
+  <script src="js/funciones.js"></script>
 
 </body>
+
 </html>

@@ -253,17 +253,22 @@ modeToggle.onclick = () => {
   estadoBoton = !estadoBoton;
   applyModeState(estadoBoton);
 };
+
 function applyModeState(recycle){
   const modeLabel = document.getElementById('modeLabel');
   total = totalValue();
+
   if (recycle){
-    if (modeLabel) modeLabel.textContent = '♻️ Modo Reciclar';
+    modeLabel.textContent = '♻️ Modo Reciclar';
     recycleFunctions(total);
   } else {
-    if (modeLabel) modeLabel.textContent = '🔥 Modo Consumo';
+    modeLabel.textContent = '🔥 Modo Consumo';
     consumeFunctions(total);
   }
+
+  updateVisibleIcons(); // <<=== NUEVA FUNCIÓN
 }
+
 
 function toggleBoton(event){
   // Si recibimos un evento change del checkbox, usar su checked; si no, leer el checkbox o invertir el estado
@@ -360,4 +365,33 @@ function cars(total){
   }else{
     document.getElementById("impact_coches").textContent = 0;
   }   
+}
+
+//MIGUELDAD
+function updateVisibleIcons() {
+  const iconBotella = document.querySelector('img[data-group="Envases"]');
+  const iconCoche   = document.querySelector('img[data-group="Transporte"]');
+  const iconLuz     = document.querySelector('img[data-group="rayo"]');
+  const iconBasura  = document.querySelector('img[data-group="contenedor"]');
+
+  if (!estadoBoton) {
+    // 🔥 MODO CONSUMO → mostrar botella, coche y luz
+    iconBotella.style.display = "inline-block";
+    iconCoche.style.display   = "inline-block";
+    iconLuz.style.display     = "inline-block";
+    iconBasura.style.display  = "none";
+  } else {
+    // ♻️ MODO RECICLAR → solo papelera
+    iconBotella.style.display = "none";
+    iconCoche.style.display   = "none";
+    iconLuz.style.display     = "none";
+    iconBasura.style.display  = "inline-block";
+  }
+
+  // Además ocultamos cualquier submenú y slider activo
+  document.querySelectorAll(".submenu-container, .slider-container")
+    .forEach(el => el.style.display = "none");
+
+  // Y desmarcamos iconos activos
+  document.querySelectorAll(".icon").forEach(i => i.classList.remove("active"));
 }
