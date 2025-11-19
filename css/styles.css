@@ -565,6 +565,7 @@ input[type="range"] {
     padding-top: 20px !important;
   }
 
+  
   .main-wrap {
     flex-direction: column;
     align-items: center;
@@ -1278,7 +1279,7 @@ footer.bottom {
     .impact-panel {
         width: 100%; /* Ocupa todo el ancho disponible */
         min-width: unset; 
-        margin: 10px 0; /* Espacio vertical entre secciones */
+        /*margin: 10px 0;  Espacio vertical entre secciones */
         padding: 15px; 
         box-sizing: border-box; /* Asegura que padding no aumente el ancho */
     }
@@ -1347,7 +1348,7 @@ footer.bottom {
     }
     
     .impact-card {
-        margin-bottom: 20px;
+        margin-top: 20px;
         width: 90%; /* Un poco de margen en los lados */
         max-width: 350px; /* Limita el ancho en pantallas más grandes */
     }
@@ -1416,6 +1417,9 @@ footer.bottom {
 
 /* Para pantallas aún más pequeñas (móviles muy pequeños) */
 @media (max-width: 480px) {
+
+
+
     .icon-grid {
         grid-template-columns: repeat(2, 1fr); /* 2 iconos por fila */
         gap: 15px;
