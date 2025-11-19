@@ -349,7 +349,7 @@ function updateTotal() {
       if (group !== 'contenedor') {
         const litrosPorUnidad = COEFFICIENTS.agua[key] || 1;
         console.log("KEY:" + key + "\nLitros por ud: " + litrosPorUnidad + "\nCount:" + count);
-
+/*
         if (key === 'rayo') {
           // Asumiendo 1kW por hora de uso (ajusta el factor si es necesario)
           totalLitrosAgua += litrosPorUnidad * count * 1000;
@@ -357,8 +357,8 @@ function updateTotal() {
           totalLitrosAgua += litrosPorUnidad * count;
         }
         console.log("Total litros: " + totalLitrosAgua);
-
-        //totalLitrosAgua = totalGastado * 270;
+*/
+        totalLitrosAgua = totalGastado * 270;
 
       }
     }
@@ -424,7 +424,7 @@ function updateTotal() {
   const LITROS_POR_CAMISETA = 2700;
 
   // La lógica para actualizar el agua ya está aquí:
-  document.getElementById('impact_agua').textContent = totalLitrosAgua.toFixed(2);
+  document.getElementById('impact_agua').textContent = Math.round(totalLitrosAgua);
   document.getElementById('impact_duchas').textContent = (totalLitrosAgua / LITROS_POR_DUCHA).toFixed(1);
   document.getElementById('impact_camisetas').textContent = (totalLitrosAgua / LITROS_POR_CAMISETA).toFixed(2);
 }
