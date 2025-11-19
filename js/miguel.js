@@ -12,11 +12,11 @@ const COEFFICIENTS = {
   // Coeficientes de emisión (kg CO₂ por unidad/km)
   co2: {
     botellaVidrio: 0.25,
-    botellaPlastico: 0.08,
-    Carton: 0.12,
+    botellaPlastico: 0.04,
+    Carton: 0.18,
     cocheIndividual: 0.15, // kg CO2 / km
-    cocheBus: 0.04,
-    moto: 0.10,
+    cocheBus: 0.9,
+    moto: 0.09,
     rayo: 0.0003, // kg CO2 / Wh (aprox) -> USADO: (luz+tv+ac) * horas * 0.0003
   },
   // Coeficientes de ahorro (kg CO₂ ahorrado por unidad reciclada)
@@ -357,6 +357,8 @@ function updateTotal() {
           totalLitrosAgua += litrosPorUnidad * count;
         }
         console.log("Total litros: " + totalLitrosAgua);
+
+        //totalLitrosAgua = totalGastado * 270;
 
       }
     }
