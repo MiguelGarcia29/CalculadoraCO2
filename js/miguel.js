@@ -375,7 +375,7 @@ function updateTotal() {
   if (totalKgCO2 < 0) {
     // 1. Cambiar la etiqueta "Total:"
     if (labelNode && labelNode.nodeType === 3) {
-      labelNode.nodeValue = "💚 Ahorro: ";
+      labelNode.nodeValue = "💚 Ahorrado: ";
     }
     // 2. Mostrar el valor absoluto (sin signo negativo)
     totalSpan.textContent = `${Math.abs(totalKgCO2).toFixed(2)} kg CO₂`;
@@ -384,7 +384,7 @@ function updateTotal() {
 
   } else {
     // Si el balance es positivo o cero, es un gasto neto o neutro
-    const balanceText = (totalKgCO2 === 0) ? "Balance:" : "🔥 Gasto:";
+    const balanceText = (totalKgCO2 === 0) ? "Balance:" : "🔥 Gastado:";
 
     // 1. Cambiar la etiqueta
     if (labelNode && labelNode.nodeType === 3) {
