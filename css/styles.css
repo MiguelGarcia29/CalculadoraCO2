@@ -1453,3 +1453,86 @@ footer.bottom {
         font-size: 15px;
     }
 }
+/* ===============================
+   Selector de idioma (banderas)
+   =============================== */
+
+.lang-switch {
+  position: fixed;
+  bottom: 18px;
+  right: 20px;
+  display: flex;
+  gap: 14px;
+  z-index: 9999;
+}
+
+.lang-switch img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: white;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.28);
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.lang-switch img:hover {
+  transform: scale(1.08);
+}
+/* === LEYENDA === */
+.legend-panel {
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 500px;
+  font-family: Arial, sans-serif;
+}
+
+.legend-panel h3 {
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+  color: #333;
+  text-align: center;
+}
+
+.legend-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.legend-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.legend-list li:last-child {
+  margin-bottom: 0;
+}
+
+/* Colores circulares de leyenda */
+.legend-color {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+/* Color verde para impacto evitado */
+.legend-color.green {
+  background-color: #4caf50;
+}
+
+/* Color azul para recursos consumidos */
+.legend-color.blue {
+  background-color: #2196f3;
+}
+
