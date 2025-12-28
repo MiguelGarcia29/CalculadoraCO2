@@ -11,8 +11,16 @@
 <body>
   <!-- Fondo animado con círculos flotantes -->
   <ul class="circles">
-    <li></li><li></li><li></li><li></li><li></li>
-    <li></li><li></li><li></li><li></li><li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
   </ul>
 
   <header>
@@ -115,13 +123,13 @@
           onclick="toggleSlider('rayo', this)" alt="Energía">
         <img src="img/iconos/basura.png" class="icon" title="Reciclaje" data-group="contenedor"
           onclick="showSubmenu('contenedor', this)" alt="Reciclaje">
-        <img src="img/iconos/comida.png" class="icon" title="Alimentación"
+        <img src="img/iconos/comida.png" class="icon" title="Alimentación" data-group="alimentacion"
           onclick="showSubmenu('Comida', this)" alt="Comida">
-        <img src="img/iconos/dispositivos.png" class="icon" title="Dispositivos"
+        <img src="img/iconos/dispositivos.png" class="icon" title="Dispositivos" data-group="dispositivos"
           onclick="showSubmenu('Dispositivos', this)" alt="Dispositivos">
-      
+
       </div>
-    <div id="Envases" class="submenu-container">
+      <div id="Envases" class="submenu-container">
         <img src="img/iconos/botella_agua.png" class="icon" title="Botella de plástico" data-group="Envases"
           onclick="openSliderBelowMenu('botellaPlastico', this)" alt="Botella de plástico">
         <img src="img/iconos/botela_crista.png" class="icon" title="Botella de vidrio" data-group="Envases"
@@ -184,41 +192,39 @@
       </div>
 
       <div id="Comida" class="submenu-container">
-        <img src="img/iconos/carne.png" class="icon"
-          onclick="openSliderBelowMenu('carne', this)" alt="Carne">
-        <img src="img/iconos/verduras.png" class="icon"
-          onclick="openSliderBelowMenu('vegetal', this)" alt="Vegetal">
+        <img src="img/iconos/carne.png" class="icon" onclick="openSliderBelowMenu('carne', this)" alt="Carne">
+        <img src="img/iconos/verduras.png" class="icon" onclick="openSliderBelowMenu('vegetal', this)" alt="Vegetal">
       </div>
 
       <div id="carne" class="slider-container">
         <label>Raciones de carne roja: <span id="carneValue">0</span></label>
         <input type="range" min="0" max="14" value="0" oninput="updateValue('carne', this)">
-        <button class="accept-btn" onclick="acceptValue('carne','comida')">Aceptar</button>
+        <button class="accept-btn" onclick="acceptValue('carne','contenedor')">Aceptar</button>
+
       </div>
 
       <div id="vegetal" class="slider-container">
         <label>Comidas vegetales: <span id="vegetalValue">0</span></label>
         <input type="range" min="0" max="14" value="0" oninput="updateValue('vegetal', this)">
-        <button class="accept-btn" onclick="acceptValue('vegetal','comida')">Aceptar</button>
+        <button class="accept-btn" onclick="acceptValue('vegetal','contenedor')">Aceptar</button>
       </div>
 
       <div id="Dispositivos" class="submenu-container">
-        <img src="img/iconos/movil.png" class="icon"
-          onclick="openSliderBelowMenu('movil', this)" alt="Móvil">
-        <img src="img/iconos/ordenador.png" class="icon"
-          onclick="openSliderBelowMenu('ordenador', this)" alt="Ordenador">
+        <img src="img/iconos/movil.png" class="icon" onclick="openSliderBelowMenu('movil', this)" alt="Móvil">
+        <img src="img/iconos/ordenador.png" class="icon" onclick="openSliderBelowMenu('ordenador', this)"
+          alt="Ordenador">
       </div>
 
       <div id="movil" class="slider-container">
         <label>Horas móvil: <span id="movilValue">0</span></label>
         <input type="range" min="0" max="24" value="0" oninput="updateValue('movil', this)">
-        <button class="accept-btn" onclick="acceptValue('movil','energia')">Aceptar</button>
+        <button class="accept-btn" onclick="acceptValue('movil','contenedor')">Aceptar</button>
       </div>
 
       <div id="ordenador" class="slider-container">
         <label>Horas ordenador: <span id="ordenadorValue">0</span></label>
         <input type="range" min="0" max="24" value="0" oninput="updateValue('ordenador', this)">
-        <button class="accept-btn" onclick="acceptValue('ordenador','energia')">Aceptar</button>
+        <button class="accept-btn" onclick="acceptValue('ordenador','contenedor')">Aceptar</button>
       </div>
 
       <!-- ENERGÍA -->
@@ -234,8 +240,7 @@
 
         <p></p>
         <label>Horas con la calefacción encendida: <span id="horasCalefaccionValue">0</span></label>
-        <input type="range" min="0" max="24" value="0"
-          oninput="updateValue('horasCalefaccion', this)">
+        <input type="range" min="0" max="24" value="0" oninput="updateValue('horasCalefaccion', this)">
 
         <label style="margin-right: 15px;">
           <input type="checkbox" id="placasSolares"> Tengo placas solares
@@ -273,31 +278,32 @@
 
     </div>
 
-   <!-- Valores consumidos divididos en gastado y evitado-->
+    <!-- Valores consumidos divididos en gastado y evitado-->
     <div class="sidebar">
-  <h2>Valores aceptados</h2>
-  <ul id="valuesList" class="values-list"></ul>
+      <h2>Valores aceptados</h2>
+      <ul id="valuesList" class="values-list"></ul>
 
-  <div class="balance-container">
-    <div class="box-impact spent">
-      <strong>Gastado: </strong><span id="savedValue">0</span>
+      <div class="balance-container">
+        <div class="box-impact spent">
+          <strong>Gastado: </strong><span id="gastadoValor">0</span>
+        </div>
+
+        <div class="box-impact avoided">
+          <strong>Evitado: </strong><span id="evitadoValor">0</span>
+        </div>
+      </div>
+
+      <button id="resetBtn" class="reset-btn" onclick="resetAll()">🔄 Reiniciar todo</button>
+    </div>
+    <footer class="bottom">© 202 5 CalculadO₂ — “Pequeñas acciones generan grandes cambios” 🌍</footer>
+
+    <!-- SELECTOR DE IDIOMA -->
+    <div class="lang-switch">
+      <a href="index_en.html"><img src="img/uk.png" alt="English"></a>
+      <a href="index_es.html"><img src="img/es.png" alt="Español"></a>
     </div>
 
-    <div class="box-impact avoided">
-      <strong>Evitado: </strong><span id="consumedValue">0</span>
-    </div>
-  </div>
-
-  <button id="resetBtn" class="reset-btn" onclick="resetAll()">🔄 Reiniciar todo</button>
-</div>
-  <footer class="bottom">© 202  5 CalculadO₂ — “Pequeñas acciones generan grandes cambios” 🌍</footer>
-
-  <!-- SELECTOR DE IDIOMA -->
-  <div class="lang-switch">
-    <a href="index_en.html"><img src="img/uk.png" alt="English"></a>
-    <a href="index_es.html"><img src="img/es.png" alt="Español"></a>
-  </div>
-
-  <script src="js/miguel.js"></script>
+    <script src="js/miguel.js"></script>
 </body>
+
 </html>

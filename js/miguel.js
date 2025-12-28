@@ -53,11 +53,17 @@ const nameMapping = {
   'cocheBus': 'Autobús (KM)',
   'moto': 'Moto (KM)',
   // Energía
-  'rayo': 'Consumo de Energía',
+  'rayo': 'Consumo Eléctrico (H)',
   // Reciclaje
   'botellaVidrioRec': 'Vidrio (Reciclado)',
   'botellaPlasticoRec': 'Plástico (Reciclado)',
-  'CartonRec': 'Cartón (Reciclado)'
+  'CartonRec': 'Cartón (Reciclado)',
+  //Dispositivo
+  'movil': 'Móvil (H)',
+  'ordenador': 'Ordenador (H)',
+  //Carnes
+  'carne': 'Carnes (Unid.)',
+  'vegetal': 'Vegetales (Unid.)'
 };
 
 
@@ -91,6 +97,9 @@ function updateVisibleIcons() {
   const iconsTransporte = document.querySelectorAll('img[data-group="Transporte"]');
   const iconsLuz = document.querySelectorAll('img[data-group="rayo"]');
   const iconsBasura = document.querySelectorAll('img[data-group="contenedor"]');
+  const iconPlato = document.querySelectorAll('img[data-group="alimentacion"]');
+  const iconDispositivo = document.querySelectorAll('img[data-group="dispositivos"]');
+
 
   // Oculta sliders y submenús activos
   document.querySelectorAll(".submenu-container, .slider-container").forEach(el => el.style.display = "none");
@@ -101,12 +110,16 @@ function updateVisibleIcons() {
     iconsEnvases.forEach(i => i.style.display = "inline-block");
     iconsTransporte.forEach(i => i.style.display = "inline-block");
     iconsLuz.forEach(i => i.style.display = "inline-block");
+    iconPlato.forEach(i => i.style.display = "inline-block");
+    iconDispositivo.forEach(i => i.style.display = "inline-block");
     iconsBasura.forEach(i => i.style.display = "none");
   } else {
     // Modo Reciclar
     iconsEnvases.forEach(i => i.style.display = "none");
     iconsTransporte.forEach(i => i.style.display = "none");
     iconsLuz.forEach(i => i.style.display = "none");
+    iconPlato.forEach(i => i.style.display = "none");
+    iconDispositivo.forEach(i => i.style.display = "none");
     iconsBasura.forEach(i => i.style.display = "inline-block");
   }
 }
@@ -217,7 +230,7 @@ function updateList() {
     for (const key in values[group]) {
       const value = values[group][key];
       // Mapeo especial para 'rayo'
-      const name = (key === 'rayo') ? 'Consumo Eléctrico (H)' : (nameMapping[key] || key);
+      const name = (nameMapping[key] || key);
 
       if (value > 0) {
         hasValues = true;
@@ -349,15 +362,15 @@ function updateTotal() {
       if (group !== 'contenedor') {
         const litrosPorUnidad = COEFFICIENTS.agua[key] || 1;
         console.log("KEY:" + key + "\nLitros por ud: " + litrosPorUnidad + "\nCount:" + count);
-/*
-        if (key === 'rayo') {
-          // Asumiendo 1kW por hora de uso (ajusta el factor si es necesario)
-          totalLitrosAgua += litrosPorUnidad * count * 1000;
-        } else {
-          totalLitrosAgua += litrosPorUnidad * count;
-        }
-        console.log("Total litros: " + totalLitrosAgua);
-*/
+        /*
+                if (key === 'rayo') {
+                  // Asumiendo 1kW por hora de uso (ajusta el factor si es necesario)
+                  totalLitrosAgua += litrosPorUnidad * count * 1000;
+                } else {
+                  totalLitrosAgua += litrosPorUnidad * count;
+                }
+                console.log("Total litros: " + totalLitrosAgua);
+        */
         totalLitrosAgua = totalGastado * 270;
 
       }
@@ -365,7 +378,7 @@ function updateTotal() {
   }
 
   // 2. ACTUALIZACIÓN DEL TOTAL NETO EN EL SIDEBAR (Balance y Color)
-  const totalKgCO2 = totalGastado - totalEvitado;
+  /*const totalKgCO2 = totalGastado - totalEvitado;
   const totalBox = document.querySelector('.total-box');
   const totalSpan = document.getElementById('totalValue');
 
@@ -396,7 +409,15 @@ function updateTotal() {
     totalSpan.textContent = `${totalKgCO2.toFixed(2)} kg CO₂`;
     // 3. Cambiar el color a rojo o negro
     totalSpan.style.color = (totalKgCO2 > 0) ? '#d9534f' : '#333';
-  }
+  }*/
+  const gastadoSpan = document.getElementById('gastadoValor');
+  const evitadoSpan = document.getElementById('evitadoValor');
+  
+  gastadoSpan.textContent = totalGastado;
+  evitadoSpan.textContent = totalEvitado;
+
+
+
 
   // 3. ACTUALIZACIÓN DE PANELES DE IMPACTO
 
@@ -514,7 +535,7 @@ function toggleInfo(infoId) {
   const existing = document.getElementById(infoId);
   if (existing) {
     existing.remove();
-  return; 
+    return;
   }
 
   const info = infoTexts[infoId];
