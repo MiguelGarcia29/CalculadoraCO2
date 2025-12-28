@@ -32,14 +32,8 @@
     <aside class="impact-panel">
       <div class="impact-card">
         <h3>Has evitado:</h3>
-
-        <!-- NUEVO: TEXTO EXPLICATIVO -->
-        <p class="impact-info">
-          ℹ️ Un viaje medio en coche consume aproximadamente
-          <strong>120 g de CO₂ por kilómetro</strong>.
-          Reducir desplazamientos ayuda a disminuir emisiones y contaminación.
-        </p>
         <!-- FIN NUEVO -->
+
 
         <div class="impact-row">
           <div class="impact-item">
@@ -47,6 +41,8 @@
               <div class="circle-value" id="impact_co2Kg">0</div>
             </div>
             <div class="circle-label">kg CO₂</div>
+            <div class="info-trigger" onclick="toggleInfo('info-kilos')">ℹ️</div>
+
           </div>
           <div class="impact-item">
             <div class="circle circle-green">
@@ -61,6 +57,10 @@
               <div class="circle-value" id="impact_coches">0</div>
             </div>
             <div class="circle-label">coches<br><small>eliminados de<br>circulación en un día</small></div>
+
+
+            <div class="info-trigger" onclick="toggleInfo('info-coches')">ℹ️</div>
+
           </div>
         </div>
       </div>
@@ -73,18 +73,22 @@
               <div class="circle-value" id="impact_agua">0</div>
             </div>
             <div class="circle-label">litros de agua</div>
+            <div class="info-trigger" onclick="toggleInfo('info-agua')">ℹ️</div>
+
           </div>
           <div class="impact-item">
             <div class="circle circle-blue">
               <div class="circle-value" id="impact_duchas">0</div>
             </div>
             <div class="circle-label">duchas<br><small>de 10 minutos</small></div>
+            <div class="info-trigger" onclick="toggleInfo('info-duchas')">ℹ️</div>
           </div>
           <div class="impact-item">
             <div class="circle circle-blue">
               <div class="circle-value" id="impact_camisetas">0</div>
             </div>
             <div class="circle-label">camisetas<br><small>de algodón</small></div>
+            <div class="info-trigger" onclick="toggleInfo('info-algodon')">ℹ️</div>
           </div>
         </div>
       </div>
@@ -111,13 +115,11 @@
           onclick="toggleSlider('rayo', this)" alt="Energía">
         <img src="img/iconos/basura.png" class="icon" title="Reciclaje" data-group="contenedor"
           onclick="showSubmenu('contenedor', this)" alt="Reciclaje">
-
-        <!-- NUEVO: ICONOS -->
         <img src="img/iconos/comida.png" class="icon" title="Alimentación"
           onclick="showSubmenu('Comida', this)" alt="Comida">
         <img src="img/iconos/dispositivos.png" class="icon" title="Dispositivos"
           onclick="showSubmenu('Dispositivos', this)" alt="Dispositivos">
-        <!-- FIN NUEVO -->
+      
       </div>
     <div id="Envases" class="submenu-container">
         <img src="img/iconos/botella_agua.png" class="icon" title="Botella de plástico" data-group="Envases"
@@ -135,9 +137,6 @@
           onclick="openSliderBelowMenu('cocheBus', this)" alt="Bus">
         <img src="img/iconos/moto.png" class="icon" title="Moto" data-group="Transporte"
           onclick="openSliderBelowMenu('moto', this)" alt="Moto">
-        <!--
-      <img src="img/iconos/camion.png" class="icon" title="Camión" data-group="Transporte" onclick="openSliderBelowMenu('camion', this)" alt="Camión">
-      -->
       </div>
 
       <!-- SLIDERS -->
@@ -183,7 +182,7 @@
         <input type="range" min="0" max="100" value="0" oninput="updateValue('camion', this)">
         <button class="accept-btn" onclick="acceptValue('camion','coche')">Aceptar</button>
       </div>
-      <!-- NUEVO: COMIDA -->
+
       <div id="Comida" class="submenu-container">
         <img src="img/iconos/carne.png" class="icon"
           onclick="openSliderBelowMenu('carne', this)" alt="Carne">
@@ -202,9 +201,7 @@
         <input type="range" min="0" max="14" value="0" oninput="updateValue('vegetal', this)">
         <button class="accept-btn" onclick="acceptValue('vegetal','comida')">Aceptar</button>
       </div>
-      <!-- FIN NUEVO -->
 
-      <!-- NUEVO: DISPOSITIVOS -->
       <div id="Dispositivos" class="submenu-container">
         <img src="img/iconos/movil.png" class="icon"
           onclick="openSliderBelowMenu('movil', this)" alt="Móvil">
@@ -223,7 +220,6 @@
         <input type="range" min="0" max="24" value="0" oninput="updateValue('ordenador', this)">
         <button class="accept-btn" onclick="acceptValue('ordenador','energia')">Aceptar</button>
       </div>
-      <!-- FIN NUEVO -->
 
       <!-- ENERGÍA -->
       <div id="rayo" class="slider-container">
@@ -236,12 +232,10 @@
         <label>Horas con el aire acondicionado puesto: <span id="horasACValue">0</span></label>
         <input type="range" min="0" max="24" value="0" oninput="updateValue('horasAC', this)">
 
-        <!-- NUEVO: CALEFACCIÓN -->
         <p></p>
         <label>Horas con la calefacción encendida: <span id="horasCalefaccionValue">0</span></label>
         <input type="range" min="0" max="24" value="0"
           oninput="updateValue('horasCalefaccion', this)">
-        <!-- FIN NUEVO -->
 
         <label style="margin-right: 15px;">
           <input type="checkbox" id="placasSolares"> Tengo placas solares
@@ -279,27 +273,24 @@
 
     </div>
 
+   <!-- Valores consumidos divididos en gastado y evitado-->
     <div class="sidebar">
-      <h2>Valores aceptados</h2>
-      <ul id="valuesList" class="values-list"></ul>
-      <div class="total-box">Balance: <span id="totalValue">0</span></div>
-      <button id="resetBtn" class="reset-btn" onclick="resetAll()">🔄 Reiniciar todo</button>
+  <h2>Valores aceptados</h2>
+  <ul id="valuesList" class="values-list"></ul>
+
+  <div class="balance-container">
+    <div class="box-impact spent">
+      <strong>Gastado: </strong><span id="savedValue">0</span>
+    </div>
+
+    <div class="box-impact avoided">
+      <strong>Evitado: </strong><span id="consumedValue">0</span>
     </div>
   </div>
 
-  <!-- NUEVO: LEYENDA -->
-  <section class="legend-panel">
-    <h3>Leyenda</h3>
-    <ul class="legend-list">
-      <li><span class="legend-color green"></span> Impacto ambiental evitado</li>
-      <li><span class="legend-color blue"></span> Recursos consumidos</li>
-      <li>♻️ Reciclar reduce emisiones</li>
-      <li>⚡ El consumo depende del tiempo de uso</li>
-    </ul>
-  </section>
-  <!-- FIN NUEVO -->
-
-  <footer class="bottom">© 2025 CalculadO₂ — “Pequeñas acciones generan grandes cambios” 🌍</footer>
+  <button id="resetBtn" class="reset-btn" onclick="resetAll()">🔄 Reiniciar todo</button>
+</div>
+  <footer class="bottom">© 202  5 CalculadO₂ — “Pequeñas acciones generan grandes cambios” 🌍</footer>
 
   <!-- SELECTOR DE IDIOMA -->
   <div class="lang-switch">
