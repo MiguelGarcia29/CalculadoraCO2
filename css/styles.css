@@ -128,6 +128,52 @@ header {
     align-items: center;
 }
 
+.balance-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; 
+    width: 100%; 
+    margin: 20px 0; 
+}
+
+.box-impact {
+    width: 100%;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    box-sizing: border-box; 
+    transition: transform 0.2s;
+}
+
+
+.box-impact .label {
+    display: block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 5px;
+    opacity: 0.8;
+}
+
+
+.box-impact .value {
+    font-size: 1.6rem;
+    font-weight: 800;
+}
+
+
+.spent {
+    background-color: #fceaea; 
+    color: #e74c3c;
+    border: 1px solid #fab1a0;
+}
+
+.avoided {
+    background-color: #ebf9f1; 
+    color: #27ae60;
+    border: 1px solid #b2f2bb;
+}
+
 /* --- Panel Izquierdo (Infografía) --- */
 .infografia-lateral {
   background-color: #ffffff;
@@ -1536,3 +1582,218 @@ footer.bottom {
   background-color: #2196f3;
 }
 
+/* Fondo oscuro */
+.info-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* Caja de información */
+.info-box {
+  background: #ffffff;
+  padding: 25px;
+  max-width: 400px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  animation: fadeIn 0.25s ease;
+}
+
+.info-box h3 {
+  margin-bottom: 10px;
+  color: #2e7d32;
+}
+
+.info-box p {
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+/* Botón OK */
+.info-ok-btn {
+  padding: 8px 25px;
+  background: #2e7d32;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.info-ok-btn:hover {
+  background: #256628;
+}
+
+/* Animación */
+@keyframes fadeIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+
+
+/* Título: Has evitado / Has consumido / Resultado */
+.balance-title {
+  font-weight: 700;
+  font-size: 15px;
+  color: #00437a;
+  margin: 0;
+}
+
+/* Unidades */
+.balance-unit {
+  font-size: 13px;
+  opacity: 0.75;
+  margin: 0;
+}
+
+
+/* ==============================
+   CÍRCULOS
+   ============================== */
+
+.circle-value {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+/* Resultado más importante */
+.circle-result {
+  width: 120px;
+  height: 120px;
+  font-size: 32px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.15);
+}
+
+
+/* ==============================
+   PANEL IZQUIERDO
+   ============================== */
+
+.impact-panel {
+  flex: 0 0 420px;
+  max-width: 420px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .impact-panel {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  .balance-inline {
+    gap: 20px;
+  }
+
+  .balance-operator {
+    display: none; /* en móvil se ve más limpio sin operadores */
+  }
+}
+
+
+
+.info-box.active {
+  display: block;
+}
+
+.info-trigger {
+  cursor: pointer;
+  font-size: 16px;
+  opacity: .6;
+}
+
+.info-trigger:hover {
+  opacity: 1;
+}
+.balance-bar {
+  height: 18px;
+  background: #eee;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+}
+
+.balance-avoid {
+  background: linear-gradient(#4ff056,#0abb3f);
+}
+
+.balance-use {
+  background: linear-gradient(#34a8ff,#0a66d9);
+}
+/* Fondo oscuro */
+.info-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* Caja de información */
+.info-box {
+  background: #ffffff;
+  padding: 25px;
+  max-width: 400px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  animation: fadeIn 0.25s ease;
+}
+
+.info-box h3 {
+  margin-bottom: 10px;
+  color: #2e7d32;
+}
+
+.info-box p {
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+/* Botón OK */
+.info-ok-btn {
+  padding: 8px 25px;
+  background: #2e7d32;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.info-ok-btn:hover {
+  background: #256628;
+}
+
+/* Animación */
+@keyframes fadeIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
