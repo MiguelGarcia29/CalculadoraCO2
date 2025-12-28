@@ -128,6 +128,22 @@ header {
     align-items: center;
 }
 
+.balance-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; 
+    width: 100%; 
+    margin: 20px 0; 
+}
+
+.box-impact {
+    width: 100%;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    box-sizing: border-box; 
+    transition: transform 0.2s;
+}
 
 
 .box-impact .label {
