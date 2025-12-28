@@ -413,8 +413,8 @@ function updateTotal() {
   const gastadoSpan = document.getElementById('gastadoValor');
   const evitadoSpan = document.getElementById('evitadoValor');
   
-  gastadoSpan.textContent = totalGastado;
-  evitadoSpan.textContent = totalEvitado;
+  gastadoSpan.textContent = totalGastado.toFixed(2);
+  evitadoSpan.textContent = totalEvitado.toFixed(2);
 
 
 
