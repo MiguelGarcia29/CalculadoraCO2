@@ -128,6 +128,36 @@ header {
     align-items: center;
 }
 
+
+
+.box-impact .label {
+    display: block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 5px;
+    opacity: 0.8;
+}
+
+
+.box-impact .value {
+    font-size: 1.6rem;
+    font-weight: 800;
+}
+
+
+.spent {
+    background-color: #fceaea; 
+    color: #e74c3c;
+    border: 1px solid #fab1a0;
+}
+
+.avoided {
+    background-color: #ebf9f1; 
+    color: #27ae60;
+    border: 1px solid #b2f2bb;
+}
+
 /* --- Panel Izquierdo (Infografía) --- */
 .infografia-lateral {
   background-color: #ffffff;
@@ -1370,6 +1400,7 @@ footer.bottom {
   transform: scale(1.08);
 }
 
+<<<<<<< Updated upstream
 
 /* ==============================
    COLORES DE LEYENDA
@@ -1384,6 +1415,70 @@ footer.bottom {
 .legend-color.blue {
   background-color: #2196f3;
 }
+>>>>>>> Stashed changes
+=======
+/* Fondo oscuro */
+.info-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* Caja de información */
+.info-box {
+  background: #ffffff;
+  padding: 25px;
+  max-width: 400px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  animation: fadeIn 0.25s ease;
+}
+
+.info-box h3 {
+  margin-bottom: 10px;
+  color: #2e7d32;
+}
+
+.info-box p {
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+}
+
+/* Botón OK */
+.info-ok-btn {
+  padding: 8px 25px;
+  background: #2e7d32;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.info-ok-btn:hover {
+  background: #256628;
+}
+
+/* Animación */
+@keyframes fadeIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
 >>>>>>> Stashed changes
 
 

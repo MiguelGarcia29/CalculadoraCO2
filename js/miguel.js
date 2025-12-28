@@ -469,6 +469,80 @@ function resetAll() {
   // (Esto es útil si el usuario estaba en un submenú o slider al reiniciar)
   updateVisibleIcons();
 }
+/*************************************************
+ *  TEXTOS EXPLICATIVOS DE LOS INFO
+ *************************************************/
+const infoTexts = {
+  "info-kilos": {
+    title: "Kg de CO₂ evitados",
+    text: "El dióxido de carbono (CO₂) es uno de los principales responsables del cambio climático. Cada kilo de CO₂ que evitas reduce el calentamiento global, mejora la calidad del aire y ayuda a proteger ecosistemas, ciudades y la salud de las personas. Aunque pueda parecer poco, miles de pequeñas acciones como la tuya marcan una diferencia real."
+  },
+
+  "info-arboles": {
+    title: "Árboles equivalentes",
+    text: "Los árboles actúan como pulmones del planeta, absorbiendo CO₂ y liberando oxígeno. Este valor representa cuántos árboles serían necesarios para compensar las emisiones generadas. Proteger los bosques y reducir nuestras emisiones es más efectivo que depender únicamente de la naturaleza para corregir nuestros errores."
+  },
+
+  "info-coches": {
+    title: "Coches fuera de circulación",
+    text: "El transporte es una de las mayores fuentes de emisiones contaminantes. Este indicador muestra cuántos coches deberían dejar de circular durante un día para lograr el mismo impacto positivo que tus decisiones. Usar transporte público, compartir coche o moverte de forma sostenible reduce ruido, contaminación y mejora la vida urbana."
+  },
+
+  "info-agua": {
+    title: "Consumo de agua",
+    text: "El agua dulce es un recurso limitado y esencial para la vida. Cada producto que consumimos requiere grandes cantidades de agua para su fabricación, transporte y mantenimiento. Reducir el consumo indirecto de agua ayuda a conservar ríos, acuíferos y garantiza su disponibilidad para futuras generaciones."
+  },
+
+  "info-duchas": {
+    title: "Duchas equivalentes",
+    text: "Una ducha de 10 minutos puede consumir entre 80 y 100 litros de agua. Este valor te permite visualizar tu impacto de forma cotidiana. Pequeños gestos como cerrar el grifo, reducir el tiempo de ducha o usar dispositivos eficientes tienen un efecto enorme cuando millones de personas los aplican."
+  },
+
+  "info-algodon": {
+    title: "Camisetas de algodón",
+    text: "Producir una sola camiseta de algodón puede requerir más de 2.000 litros de agua. Este indicador muestra el impacto oculto detrás de la ropa que usamos a diario. Apostar por un consumo responsable, reutilizar prendas y elegir productos sostenibles reduce la presión sobre el medio ambiente y los recursos naturales."
+  }
+};
+
+
+/*************************************************
+ *  FUNCIÓN PARA MOSTRAR / OCULTAR INFO
+ *************************************************/
+function toggleInfo(infoId) {
+  // Si ya existe el modal, no lo creamos otra vez
+  if (document.getElementById(infoId)) return;
+
+  const info = infoTexts[infoId];
+  if (!info) return;
+
+  // Overlay
+  const overlay = document.createElement("div");
+  overlay.className = "info-overlay";
+  overlay.id = infoId;
+
+  // Caja de info
+  const box = document.createElement("div");
+  box.className = "info-box";
+
+  box.innerHTML = `
+    <h3>${info.title}</h3>
+    <p>${info.text}</p>
+    <button class="info-ok-btn">OK</button>
+  `;
+
+  overlay.appendChild(box);
+  document.body.appendChild(overlay);
+
+  // Cerrar al pulsar OK
+  box.querySelector(".info-ok-btn").addEventListener("click", () => {
+    overlay.remove();
+  });
+
+  // Cerrar si se hace click fuera
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) overlay.remove();
+  });
+}
 
 //PANELES INFO
 function toggleInfo(id) {
