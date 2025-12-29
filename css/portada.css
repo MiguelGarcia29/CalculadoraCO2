@@ -105,3 +105,22 @@
   from { opacity: 0; transform: translateY(50px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* =========================
+   TRANSICIÓN DE SALIDA
+========================= */
+
+.portada.exit {
+  animation: fadeOutZoom 1s ease forwards;
+}
+
+@keyframes fadeOutZoom {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+}
