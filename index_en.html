@@ -22,6 +22,7 @@
     <li></li>
     <li></li>
   </ul>
+
   <header>
     <img src="img/LOGO_CINGLES.png" class="logo left" alt="Logo El Centro Inglés">
     <span class="logo-text animate-logo">
@@ -35,65 +36,78 @@
 
   <div class="main-wrap">
 
-    <!-- === PANEL IZQUIERDO: Has evitado / También has ahorrado === -->
+    <!-- === PANEL IZQUIERDO === -->
     <aside class="impact-panel">
       <div class="impact-card">
-        <h3>Has evitado:</h3>
+        <h3>You have avoided:</h3>
+        <!-- FIN NUEVO -->
+
+
         <div class="impact-row">
           <div class="impact-item">
             <div class="circle circle-green">
               <div class="circle-value" id="impact_co2Kg">0</div>
             </div>
             <div class="circle-label">kg CO₂</div>
+            <div class="info-trigger" onclick="toggleInfo('info-kilos')">ℹ️</div>
+
           </div>
           <div class="impact-item">
             <div class="circle circle-green">
               <div class="circle-value" id="impact_arboles">0</div>
             </div>
-            <div class="circle-label">árboles<br><small>absorbiendo CO₂<br>en un día</small></div>
+            <div class="circle-label">trees<br><small>absorbing CO₂<br>in one day</small></div>
+            <div class="info-trigger" onclick="toggleInfo('info-arboles')">ℹ️</div>
+
           </div>
           <div class="impact-item">
             <div class="circle circle-green">
               <div class="circle-value" id="impact_coches">0</div>
             </div>
-            <div class="circle-label">coches<br><small>eliminados de<br>circulación en un día</small></div>
+            <div class="circle-label">cars<br><small>removed from<br>circulation in one day</small></div>
+
+
+            <div class="info-trigger" onclick="toggleInfo('info-coches')">ℹ️</div>
+
           </div>
         </div>
       </div>
 
       <div class="impact-card">
-        <h3>Has gastado:</h3>
+        <h3>You have used:</h3>
         <div class="impact-row">
           <div class="impact-item">
             <div class="circle circle-blue">
               <div class="circle-value" id="impact_agua">0</div>
             </div>
-            <div class="circle-label">litros de agua</div>
+            <div class="circle-label">liters of water</div>
+            <div class="info-trigger" onclick="toggleInfo('info-agua')">ℹ️</div>
+
           </div>
           <div class="impact-item">
             <div class="circle circle-blue">
               <div class="circle-value" id="impact_duchas">0</div>
             </div>
-            <div class="circle-label">duchas<br><small>de 10 minutos</small></div>
+            <div class="circle-label">10-min showers<br></div>
+            <div class="info-trigger" onclick="toggleInfo('info-duchas')">ℹ️</div>
           </div>
           <div class="impact-item">
             <div class="circle circle-blue">
               <div class="circle-value" id="impact_camisetas">0</div>
             </div>
-            <div class="circle-label">camisetas<br><small>de algodón</small></div>
+            <div class="circle-label">cotton t-shirts<br></div>
+            <div class="info-trigger" onclick="toggleInfo('info-algodon')">ℹ️</div>
           </div>
         </div>
       </div>
     </aside>
     <!-- === FIN PANEL IZQUIERDO === -->
 
-
-
     <div class="container">
-      <h1>Calcula tu impacto</h1>
-      <!-- 🔽 INTERRUPTOR DE MODO RECICLAR / GASTAR -->
+      <h1>Calculate your impact</h1>
+
       <div class="mode-switch-container">
-        <span id="modeLabel">♻️ Modo: Reciclar</span>
+        <span id="modeLabel">♻️ Mode: Recycle</span>
         <label class="switch">
           <input type="checkbox" id="modeToggle" onchange="toggleBoton(event)">
           <span class="slider"></span>
@@ -109,9 +123,12 @@
           onclick="toggleSlider('rayo', this)" alt="Energía">
         <img src="img/iconos/basura.png" class="icon" title="Reciclaje" data-group="contenedor"
           onclick="showSubmenu('contenedor', this)" alt="Reciclaje">
-      </div>
+        <img src="img/iconos/comida.png" class="icon" title="Alimentación" data-group="alimentacion"
+          onclick="showSubmenu('Comida', this)" alt="Comida">
+        <img src="img/iconos/dispositivos.png" class="icon" title="Dispositivos" data-group="dispositivos"
+          onclick="showSubmenu('Dispositivos', this)" alt="Dispositivos">
 
-      <!-- SUBMENÚS -->
+      </div>
       <div id="Envases" class="submenu-container">
         <img src="img/iconos/botella_agua.png" class="icon" title="Botella de plástico" data-group="Envases"
           onclick="openSliderBelowMenu('botellaPlastico', this)" alt="Botella de plástico">
@@ -128,84 +145,109 @@
           onclick="openSliderBelowMenu('cocheBus', this)" alt="Bus">
         <img src="img/iconos/moto.png" class="icon" title="Moto" data-group="Transporte"
           onclick="openSliderBelowMenu('moto', this)" alt="Moto">
-        <!--
-      <img src="img/iconos/camion.png" class="icon" title="Camión" data-group="Transporte" onclick="openSliderBelowMenu('camion', this)" alt="Camión">
-      -->
       </div>
 
       <!-- SLIDERS -->
       <div id="botellaVidrio" class="slider-container">
-        <label>Botellas de vidrio (Unidades): <span id="botellaVidrioValue">0</span></label>
+        <label>Glass bottles (Units): <span id="botellaVidrioValue">0</span></label>
         <input type="range" min="0" max="100" value="0" oninput="updateValue('botellaVidrio', this)">
-        <button class="accept-btn" onclick="acceptValue('botellaVidrio','botella')">Aceptar</button>
+        <button class="accept-btn" onclick="acceptValue('botellaVidrio','botella')">Accept</button>
       </div>
 
       <div id="botellaPlastico" class="slider-container">
-        <label>Botellas de plástico (Unidades): <span id="botellaPlasticoValue">0</span></label>
+        <label>Plastic bottles (Units): <span id="botellaPlasticoValue">0</span></label>
         <input type="range" min="0" max="100" value="0" oninput="updateValue('botellaPlastico', this)">
-        <button class="accept-btn" onclick="acceptValue('botellaPlastico','botella')">Aceptar</button>
+        <button class="accept-btn" onclick="acceptValue('botellaPlastico','botella')">Accept</button>
       </div>
 
       <div id="Carton" class="slider-container">
-        <label>Envases de cartón (Unidades): <span id="CartonValue">0</span></label>
+        <label>Cardboard containers (Units): <span id="CartonValue">0</span></label>
         <input type="range" min="0" max="100" value="0" oninput="updateValue('Carton', this)">
-        <button class="accept-btn" onclick="acceptValue('Carton','botella')">Aceptar</button>
+        <button class="accept-btn" onclick="acceptValue('Carton','botella')">Accept</button>
       </div>
 
       <!-- Transporte -->
       <div id="cocheIndividual" class="slider-container">
-        <label>Coche (KM): <span id="cocheIndividualValue">0</span></label>
+        <label>Car (km): <span id="cocheIndividualValue">0</span></label>
         <input type="range" min="0" max="100" value="0" oninput="updateValue('cocheIndividual', this)">
-        <button class="accept-btn" onclick="acceptValue('cocheIndividual','coche')">Aceptar</button>
+        <button class="accept-btn" onclick="acceptValue('cocheIndividual','coche')">Accept</button>
       </div>
 
       <div id="cocheBus" class="slider-container">
-        <label>Autobus (KM): <span id="cocheBusValue">0</span></label>
+        <label>Bus (km): <span id="cocheBusValue">0</span></label>
         <input type="range" min="0" max="100" value="0" oninput="updateValue('cocheBus', this)">
-        <button class="accept-btn" onclick="acceptValue('cocheBus','coche')">Aceptar</button>
+        <button class="accept-btn" onclick="acceptValue('cocheBus','coche')">Accept</button>
       </div>
 
       <div id="moto" class="slider-container">
-        <label>Moto (KM): <span id="motoValue">0</span></label>
+        <label>Motorcycle (km): <span id="motoValue">0</span></label>
         <input type="range" min="0" max="100" value="0" oninput="updateValue('moto', this)">
-        <button class="accept-btn" onclick="acceptValue('moto','coche')">Aceptar</button>
+        <button class="accept-btn" onclick="acceptValue('moto','coche')">Accept</button>
       </div>
 
       <div id="camion" class="slider-container">
-        <label>Camión (KM): <span id="camionValue">0</span></label>
+        <label>Truck (km): <span id="camionValue">0</span></label>
         <input type="range" min="0" max="100" value="0" oninput="updateValue('camion', this)">
-        <button class="accept-btn" onclick="acceptValue('camion','coche')">Aceptar</button>
+        <button class="accept-btn" onclick="acceptValue('camion','coche')">Accept</button>
       </div>
 
-      <!-- Energía y Reciclaje -->
-      <!-- Energía -->
-      <div id="rayo" class="slider-container">
+      <div id="Comida" class="submenu-container">
+        <img src="img/iconos/carne.png" class="icon" onclick="openSliderBelowMenu('carne', this)" alt="Carne">
+        <img src="img/iconos/verduras.png" class="icon" onclick="openSliderBelowMenu('vegetal', this)" alt="Vegetal">
+      </div>
 
-        <label>Horas con la luz encendida: <span id="horasLuzValue">0</span></label>
+      <div id="carne" class="slider-container">
+        <label>Red meat portions: <span id="carneValue">0</span></label>
+        <input type="range" min="0" max="14" value="0" oninput="updateValue('carne', this)">
+        <button class="accept-btn" onclick="acceptValue('carne','contenedor')">Accept</button>
+
+      </div>
+
+      <div id="vegetal" class="slider-container">
+        <label>Vegetable meals: <span id="vegetalValue">0</span></label>
+        <input type="range" min="0" max="14" value="0" oninput="updateValue('vegetal', this)">
+        <button class="accept-btn" onclick="acceptValue('vegetal','contenedor')">Accept</button>
+      </div>
+
+      <div id="Dispositivos" class="submenu-container">
+        <img src="img/iconos/movil.png" class="icon" onclick="openSliderBelowMenu('movil', this)" alt="Móvil">
+        <img src="img/iconos/ordenador.png" class="icon" onclick="openSliderBelowMenu('ordenador', this)"
+          alt="Ordenador">
+      </div>
+
+      <div id="movil" class="slider-container">
+        <label>Horas móvil: <span id="movilValue">0</span></label>
+        <input type="range" min="0" max="24" value="0" oninput="updateValue('movil', this)">
+        <button class="accept-btn" onclick="acceptValue('movil','contenedor')">Aceptar</button>
+      </div>
+
+      <div id="ordenador" class="slider-container">
+        <label>Computer hours: <span id="ordenadorValue">0</span></label>
+        <input type="range" min="0" max="24" value="0" oninput="updateValue('ordenador', this)">
+        <button class="accept-btn" onclick="acceptValue('ordenador','contenedor')">Accept</button>
+      </div>
+
+      <!-- ENERGÍA -->
+      <div id="rayo" class="slider-container">
+        <label>Hours with the light on: <span id="horasLuzValue">0</span></label>
         <input type="range" min="0" max="24" value="0" oninput="updateValue('horasLuz', this)">
         <p></p>
-        <label>Horas con la televisión puesta: <span id="horasTVValue">0</span></label>
+        <label>Hours with the TV on: <span id="horasTVValue">0</span></label>
         <input type="range" min="0" max="24" value="0" oninput="updateValue('horasTV', this)">
         <p></p>
         <label>Horas con el aire acondicionado puesto: <span id="horasACValue">0</span></label>
         <input type="range" min="0" max="24" value="0" oninput="updateValue('horasAC', this)">
 
-        <label style="
-    margin-right: 15px;">
-          <input type="checkbox" id="placasSolares"> Tengo placas solares
+        <p></p>
+        <label>Hours with the air conditioning on: <span id="horasCalefaccionValue">0</span></label>
+        <input type="range" min="0" max="24" value="0" oninput="updateValue('horasCalefaccion', this)">
+
+        <label style="margin-right: 15px;">
+          <input type="checkbox" id="placasSolares"> I have solar panels
         </label>
 
-        <button class="accept-btn" onclick="acceptEnergiaValues()">Aceptar</button>
+        <button class="accept-btn" onclick="acceptEnergiaValues()">Accept</button>
       </div>
-
-      <!--
-      <div id="contenedor" class="slider-container">
-        <label>Reciclaje: <span id="contenedorValue">0</span></label>
-        <input type="range" min="0" max="100" value="0" oninput="updateValue('contenedor', this)">
-        <button class="accept-btn" onclick="acceptValue('contenedor','contenedor')">Aceptar</button>
-      </div>
-      -->
-
       <div id="contenedor" class="submenu-container">
         <img src="img/iconos/botella_agua.png" class="icon" title="Botella de plástico" data-group="contenedor"
           onclick="openSliderBelowMenu('botellaPlasticoRec', this)" alt="Botella de plástico">
@@ -217,53 +259,51 @@
 
       <!-- SLIDERS para reciclaje -->
       <div id="botellaVidrioRec" class="slider-container">
-        <label>Botellas de vidrio (Unidades): <span id="botellaVidrioRecValue">0</span></label>
+        <label>Glass bottles (Units): <span id="botellaVidrioRecValue">0</span></label>
         <input type="range" min="0" max="100" value="0" oninput="updateValue('botellaVidrioRec', this)">
-        <button class="accept-btn" onclick="acceptValue('botellaVidrioRec','contenedor')">Aceptar</button>
+        <button class="accept-btn" onclick="acceptValue('botellaVidrioRec','contenedor')">Accept</button>
       </div>
 
       <div id="botellaPlasticoRec" class="slider-container">
-        <label>Botellas de plástico (Unidades): <span id="botellaPlasticoRecValue">0</span></label>
+        <label>Plastic bottles (Units): <span id="botellaPlasticoRecValue">0</span></label>
         <input type="range" min="0" max="100" value="0" oninput="updateValue('botellaPlasticoRec', this)">
-        <button class="accept-btn" onclick="acceptValue('botellaPlasticoRec','contenedor')">Aceptar</button>
+        <button class="accept-btn" onclick="acceptValue('botellaPlasticoRec','contenedor')">Accept</button>
       </div>
 
       <div id="CartonRec" class="slider-container">
-        <label>Envases de cartón (Unidades): <span id="CartonRecValue">0</span></label>
+        <label>Cardboard containers (Units): <span id="CartonRecValue">0</span></label>
         <input type="range" min="0" max="100" value="0" oninput="updateValue('CartonRec', this)">
-        <button class="accept-btn" onclick="acceptValue('CartonRec','contenedor')">Aceptar</button>
+        <button class="accept-btn" onclick="acceptValue('CartonRec','contenedor')">Accept</button>
       </div>
 
-
-
     </div>
 
-
-
+    <!-- Valores consumidos divididos en gastado y evitado-->
     <div class="sidebar">
-      <h2>Valores aceptados</h2>
-
+      <h2>Accepted values</h2>
       <ul id="valuesList" class="values-list"></ul>
-      <div class="total-box">Balance: <span id="totalValue">0</span></div>
-      <button id="resetBtn" class="reset-btn" onclick="resetAll()">🔄 Reiniciar todo</button>
+
+      <div class="balance-container">
+        <div class="box-impact spent">
+          <strong>Consumed: </strong><span id="gastadoValor">0</span>
+        </div>
+
+        <div class="box-impact avoided">
+          <strong>Avoided: </strong><span id="evitadoValor">0</span>
+        </div>
+      </div>
+
+      <button id="resetBtn" class="reset-btn" onclick="resetAll()">🔄 Reset all</button>
     </div>
-  </div>
+    <footer class="bottom">© 2025 CalculadO₂ — “Small actions create big changes” 🌍</footer>
 
-  <footer class="bottom">© 2025 CalculadO₂ — “Pequeñas acciones generan grandes cambios” 🌍</footer>
- <!-- SELECTOR DE IDIOMA -->
-<div class="lang-switch">
-  <a href="index_en.html" title="English">
-    <img src="img/uk.png" alt="English">
-  </a>
+    <!-- SELECTOR DE IDIOMA  DESACTIVADO MIENTRAS SE SOLUCIONA COMO SE VE-->
+    <div class="lang-switch" style="display:none;">
+      <a href="index_en.html"><img src="img/uk.png" alt="English"></a>
+      <a href="index_es.html"><img src="img/es.png" alt="Español"></a>
+    </div>
 
-  <a href="index_es.html" title="Español">
-    <img src="img/es.png" alt="Español">
-  </a>
-</div>
-
-
-  <script src="js/miguel.js "></script>
-
+    <script src="js/miguel.js"></script>
 </body>
 
 </html>
