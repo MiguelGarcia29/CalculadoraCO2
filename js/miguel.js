@@ -472,3 +472,12 @@ function resetAll() {
 
 //INICIALIZA TODO
 resetAll();
+
+// FADE-IN AL CARGAR
+window.addEventListener('load', () => {
+  // Pequeño retraso para asegurar que los estilos estén aplicados
+  setTimeout(() => {
+    document.body.classList.add('fade-in');
+  }, 50);
+});
+

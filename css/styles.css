@@ -1536,3 +1536,14 @@ footer.bottom {
   background-color: #2196f3;
 }
 
+/* ========================= */
+/* FADE-IN PARA CARGA DE PÁGINA */
+/* ========================= */
+body {
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+}
+
+body.fade-in {
+  opacity: 1;
+}
