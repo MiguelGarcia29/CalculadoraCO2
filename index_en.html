@@ -115,36 +115,36 @@
       </div>
 
       <div class="icons">
-        <img src="img/iconos/carton.png" class="icon" title="Envases" data-group="Envases"
-          onclick="showSubmenu('Envases', this)" alt="Envases">
-        <img src="img/iconos/coche.png" class="icon" title="Transporte" data-group="Transporte"
-          onclick="showSubmenu('Transporte', this)" alt="Transporte">
-        <img src="img/iconos/energia.png" class="icon" title="Energía" data-group="rayo"
-          onclick="toggleSlider('rayo', this)" alt="Energía">
-        <img src="img/iconos/basura.png" class="icon" title="Reciclaje" data-group="contenedor"
-          onclick="showSubmenu('contenedor', this)" alt="Reciclaje">
-        <img src="img/iconos/comida.png" class="icon" title="Alimentación" data-group="alimentacion"
-          onclick="showSubmenu('Comida', this)" alt="Comida">
-        <img src="img/iconos/dispositivos.png" class="icon" title="Dispositivos" data-group="dispositivos"
-          onclick="showSubmenu('Dispositivos', this)" alt="Dispositivos">
+        <img src="img/iconos/carton.png" class="icon" title="Packaging" data-group="Envases"
+          onclick="showSubmenu('Envases', this)" alt="Packaging">
+        <img src="img/iconos/coche.png" class="icon" title="Transport" data-group="Transporte"
+          onclick="showSubmenu('Transporte', this)" alt="Transport">
+        <img src="img/iconos/energia.png" class="icon" title="Energy" data-group="rayo"
+          onclick="toggleSlider('rayo', this)" alt="Energy">
+        <img src="img/iconos/basura.png" class="icon" title="Recycling" data-group="contenedor"
+          onclick="showSubmenu('contenedor', this)" alt="Recycling">
+        <img src="img/iconos/comida.png" class="icon" title="Food" data-group="alimentacion"
+          onclick="showSubmenu('Comida', this)" alt="Food">
+        <img src="img/iconos/dispositivos.png" class="icon" title="Devices" data-group="dispositivos"
+          onclick="showSubmenu('Dispositivos', this)" alt="Devices">
 
       </div>
       <div id="Envases" class="submenu-container">
-        <img src="img/iconos/botella_agua.png" class="icon" title="Botella de plástico" data-group="Envases"
-          onclick="openSliderBelowMenu('botellaPlastico', this)" alt="Botella de plástico">
-        <img src="img/iconos/botela_crista.png" class="icon" title="Botella de vidrio" data-group="Envases"
-          onclick="openSliderBelowMenu('botellaVidrio', this)" alt="Botella de vidrio">
-        <img src="img/iconos/carton.png" class="icon" title="Cartón" data-group="Envases"
-          onclick="openSliderBelowMenu('Carton', this)" alt="Cartón">
+        <img src="img/iconos/botella_agua.png" class="icon" title="Plastic bottle" data-group="Envases"
+          onclick="openSliderBelowMenu('botellaPlastico', this)" alt="Plastic bottle">
+        <img src="img/iconos/botela_crista.png" class="icon" title="Glass bottle" data-group="Envases"
+          onclick="openSliderBelowMenu('botellaVidrio', this)" alt="Glass bottle">
+        <img src="img/iconos/carton.png" class="icon" title="Cardboard" data-group="Envases"
+          onclick="openSliderBelowMenu('Carton', this)" alt="Cardboard">
       </div>
 
       <div id="Transporte" class="submenu-container">
-        <img src="img/iconos/coche.png" class="icon" title="Coche" data-group="Transporte"
-          onclick="openSliderBelowMenu('cocheIndividual', this)" alt="Coche individual">
-        <img src="img/iconos/autobus.png" class="icon" title="Autobus" data-group="Transporte"
+        <img src="img/iconos/coche.png" class="icon" title="Car" data-group="Transporte"
+          onclick="openSliderBelowMenu('cocheIndividual', this)" alt="Car">
+        <img src="img/iconos/autobus.png" class="icon" title="Bus" data-group="Transporte"
           onclick="openSliderBelowMenu('cocheBus', this)" alt="Bus">
-        <img src="img/iconos/moto.png" class="icon" title="Moto" data-group="Transporte"
-          onclick="openSliderBelowMenu('moto', this)" alt="Moto">
+        <img src="img/iconos/moto.png" class="icon" title="Motorcycle" data-group="Transporte"
+          onclick="openSliderBelowMenu('moto', this)" alt="Motorcycle">
       </div>
 
       <!-- SLIDERS -->
@@ -192,39 +192,38 @@
       </div>
 
       <div id="Comida" class="submenu-container">
-        <img src="img/iconos/carne.png" class="icon" onclick="openSliderBelowMenu('carne', this)" alt="Carne">
-        <img src="img/iconos/verduras.png" class="icon" onclick="openSliderBelowMenu('vegetal', this)" alt="Vegetal">
+        <img src="img/iconos/carne.png" class="icon" title="Meat" onclick="openSliderBelowMenu('vaca', this)" alt="Meat">
+        <img src="img/iconos/verduras.png" class="icon" title="Vegetables" onclick="openSliderBelowMenu('vegetal', this)" alt="Vegetables">
       </div>
 
-      <div id="carne" class="slider-container">
-        <label>Red meat portions: <span id="carneValue">0</span></label>
-        <input type="range" min="0" max="14" value="0" oninput="updateValue('carne', this)">
-        <button class="accept-btn" onclick="acceptValue('carne','contenedor')">Accept</button>
+      <div id="vaca" class="slider-container">
+        <label>Beef steak portions: <span id="vacaValue">0</span></label>
+        <input type="range" min="0" max="14" value="0" oninput="updateValue('vaca', this)">
+        <button class="accept-btn" onclick="acceptValue('vaca','comida')">Accept</button>
 
       </div>
 
       <div id="vegetal" class="slider-container">
         <label>Vegetable meals: <span id="vegetalValue">0</span></label>
         <input type="range" min="0" max="14" value="0" oninput="updateValue('vegetal', this)">
-        <button class="accept-btn" onclick="acceptValue('vegetal','contenedor')">Accept</button>
+        <button class="accept-btn" onclick="acceptValue('vegetal','comida')">Accept</button>
       </div>
 
       <div id="Dispositivos" class="submenu-container">
-        <img src="img/iconos/movil.png" class="icon" onclick="openSliderBelowMenu('movil', this)" alt="Móvil">
-        <img src="img/iconos/ordenador.png" class="icon" onclick="openSliderBelowMenu('ordenador', this)"
-          alt="Ordenador">
+        <img src="img/iconos/movil.png" class="icon" title="Mobile" onclick="openSliderBelowMenu('movil', this)" alt="Mobile">
+        <img src="img/iconos/ordenador.png" class="icon" title="Computer" onclick="openSliderBelowMenu('ordenador', this)" alt="Computer">
       </div>
 
       <div id="movil" class="slider-container">
-        <label>Horas móvil: <span id="movilValue">0</span></label>
+        <label>Mobile hours: <span id="movilValue">0</span></label>
         <input type="range" min="0" max="24" value="0" oninput="updateValue('movil', this)">
-        <button class="accept-btn" onclick="acceptValue('movil','contenedor')">Aceptar</button>
+        <button class="accept-btn" onclick="acceptValue('movil','dispositivos')">Accept</button>
       </div>
 
       <div id="ordenador" class="slider-container">
         <label>Computer hours: <span id="ordenadorValue">0</span></label>
         <input type="range" min="0" max="24" value="0" oninput="updateValue('ordenador', this)">
-        <button class="accept-btn" onclick="acceptValue('ordenador','contenedor')">Accept</button>
+        <button class="accept-btn" onclick="acceptValue('ordenador','dispositivos')">Accept</button>
       </div>
 
       <!-- ENERGÍA -->
@@ -249,12 +248,12 @@
         <button class="accept-btn" onclick="acceptEnergiaValues()">Accept</button>
       </div>
       <div id="contenedor" class="submenu-container">
-        <img src="img/iconos/botella_agua.png" class="icon" title="Botella de plástico" data-group="contenedor"
-          onclick="openSliderBelowMenu('botellaPlasticoRec', this)" alt="Botella de plástico">
-        <img src="img/iconos/botela_crista.png" class="icon" title="Botella de vidrio" data-group="contenedor"
-          onclick="openSliderBelowMenu('botellaVidrioRec', this)" alt="Botella de vidrio">
-        <img src="img/iconos/carton.png" class="icon" title="Cartón" data-group="contenedor"
-          onclick="openSliderBelowMenu('CartonRec', this)" alt="Cartón">
+        <img src="img/iconos/botella_agua.png" class="icon" title="Plastic bottle" data-group="contenedor"
+          onclick="openSliderBelowMenu('botellaPlasticoRec', this)" alt="Plastic bottle">
+        <img src="img/iconos/botela_crista.png" class="icon" title="Glass bottle" data-group="contenedor"
+          onclick="openSliderBelowMenu('botellaVidrioRec', this)" alt="Glass bottle">
+        <img src="img/iconos/carton.png" class="icon" title="Cardboard" data-group="contenedor"
+          onclick="openSliderBelowMenu('CartonRec', this)" alt="Cardboard">
       </div>
 
       <!-- SLIDERS para reciclaje -->
@@ -303,7 +302,7 @@
       <a href="index_es.html"><img src="img/es.png" alt="Español"></a>
     </div>
 
-    <script src="js/funciones.js"></script>
+    <script src="js/funciones_en.js"></script>
 </body>
 
 </html>
