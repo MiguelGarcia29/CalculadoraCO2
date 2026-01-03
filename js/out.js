@@ -395,3 +395,23 @@ function updateVisibleIcons() {
   // Y desmarcamos iconos activos
   document.querySelectorAll(".icon").forEach(i => i.classList.remove("active"));
 }
+
+// Detecta cuando el usuario entra en la página, ya sea por carga nueva o historial
+// Para que funcione la flecha atras
+window.addEventListener('pageshow', (event) => {
+    const modeToggle = document.getElementById("modeToggle");
+    
+    if (modeToggle) {
+        // 1. Sincroniza la variable interna con el estado real del checkbox del navegador
+        estadoBoton = modeToggle.checked;
+        
+        // 2. Fuerza la actualización de la interfaz (iconos, etiquetas y cálculos)
+        applyModeState(estadoBoton);
+        updateTotal();
+        
+        // 3. Limpia menús abiertos que pudieran haber quedado en caché
+        document.querySelectorAll(".submenu-container, .slider-container")
+            .forEach(el => el.style.display = "none");
+        document.querySelectorAll(".icon").forEach(i => i.classList.remove("active"));
+    }
+});
