@@ -15,8 +15,10 @@ const COEFFICIENTS = {
     cocheIndividual: 0.15,
     cocheBus: 0.9,
     moto: 0.09,
-    camion: 1.2, 
-    rayo: 0.0003, // kg CO2 / Wh
+    camion: 1.2,
+    rayo: 0.4, // kg CO2 / Wh
+    aireAcondicionado: 0.8,
+    calefaccion: 0.8,
     movil: 0.002,
     ordenador: 0.05,
     pollo: 0.72,
@@ -36,18 +38,18 @@ const COEFFICIENTS = {
     botellaVidrio: 0.005,
     botellaPlastico: 0.001,
     Carton: 0.0005,
-    
+
   }
 };
 
 // Objeto global para almacenar todos los valores aceptados.
 let values = {
-  'botella': {}, 
-  'coche': {},   
-  'energia': {}, 
-  'contenedor': {}, 
-  'dispositivos':{},
-  'comida':{}
+  'botella': {},
+  'coche': {},
+  'energia': {},
+  'contenedor': {},
+  'dispositivos': {},
+  'comida': {}
 };
 
 // Mapeo de IDs a nombres legibles en español.
@@ -62,6 +64,8 @@ const nameMapping = {
   'moto': 'Moto (KM)',
   // Energía
   'rayo': 'Consumo Eléctrico (H)',
+  'aireAcondicionado': 'Aire Acondicionado (H)',
+  'calefaccion': 'Calefacción (H)',
   // Reciclaje
   'botellaVidrioRec': 'Vidrio (Reciclado)',
   'botellaPlasticoRec': 'Plástico (Reciclado)',
@@ -85,19 +89,19 @@ const nameMapping = {
 const modeToggle = document.getElementById("modeToggle");
 
 // Inicializamos según el checkbox (si existe, para evitar errores si el script carga antes)
-if(modeToggle) {
-    estadoBoton = !!modeToggle.checked;
-    applyModeState(estadoBoton);
+if (modeToggle) {
+  estadoBoton = !!modeToggle.checked;
+  applyModeState(estadoBoton);
 
-    modeToggle.onclick = (event) => {
-      estadoBoton = !!event.target.checked;
-      applyModeState(estadoBoton);
-    };
+  modeToggle.onclick = (event) => {
+    estadoBoton = !!event.target.checked;
+    applyModeState(estadoBoton);
+  };
 }
 
 function applyModeState(recycle) {
   const modeLabel = document.getElementById('modeLabel');
-  if(modeLabel) modeLabel.textContent = recycle ? '♻️ Modo Reciclar' : '🔥 Modo Consumo';
+  if (modeLabel) modeLabel.textContent = recycle ? '♻️ Modo Reciclar' : '🔥 Modo Consumo';
   updateVisibleIcons();
 }
 
@@ -166,7 +170,7 @@ function openSliderBelowMenu(sliderId, el) {
 
 function updateValue(id, range) {
   const span = document.getElementById(id + "Value");
-  if(span) span.textContent = range.value;
+  if (span) span.textContent = range.value;
 }
 
 
@@ -177,17 +181,17 @@ function updateValue(id, range) {
 
 function acceptValue(id, group) {
   const span = document.getElementById(id + "Value");
-  if(!span) {
-      console.error("❌ ERROR: No se encuentra el elemento con ID: " + id + "Value");
-      return;
+  if (!span) {
+    console.error("❌ ERROR: No se encuentra el elemento con ID: " + id + "Value");
+    return;
   }
-  
+
   const value = Number(span.textContent);
   console.log(`🔍 DEBUG: Aceptando valor. Grupo: ${group}, ID: ${id}, Valor: ${value}`);
 
   if (!Number.isFinite(value) || value <= 0) {
-      console.warn("⚠️ Valor no válido o 0, no se añade.");
-      return;
+    console.warn("⚠️ Valor no válido o 0, no se añade.");
+    return;
   }
 
   // Asegurar que el grupo existe en values
@@ -200,37 +204,49 @@ function acceptValue(id, group) {
 
   // Ocultar slider
   const sliderContainer = document.getElementById(id);
-  if(sliderContainer) sliderContainer.style.display = 'none';
+  if (sliderContainer) sliderContainer.style.display = 'none';
   document.querySelectorAll('.icon').forEach(i => i.classList.remove("active"));
 }
 
 /**
- * 💡 Acepta los valores de Energía (CORREGIDO)
+ * 💡 Acepta los valores de Energía (MODIFICADO)
+ * Separa Luz/TV del Aire/Calefacción para aplicar coeficientes distintos.
  */
 function acceptEnergiaValues() {
-  // CORRECCIÓN IMPORTANTE: Asegurarse de leer los IDs correctos (los Span, no los inputs si no tienen ID)
-  // En tu HTML los spans son: horasLuzValue, horasTVValue, etc.
   const horasLuz = Number(document.getElementById('horasLuzValue').textContent) || 0;
   const horasTV = Number(document.getElementById('horasTVValue').textContent) || 0;
   const horasAC = Number(document.getElementById('horasACValue').textContent) || 0;
-  // CORREGIDO: Antes buscabas 'horasCalefaccion' (input), ahora 'horasCalefaccionValue' (span)
   const horasCal = Number(document.getElementById('horasCalefaccionValue').textContent) || 0;
 
   console.log(`🔍 DEBUG Energía: Luz=${horasLuz}, TV=${horasTV}, AC=${horasAC}, Calef=${horasCal}`);
 
   const placas = document.getElementById('placasSolares').checked;
+  // Factor solar: si hay placas, reducimos el consumo al 20% (multiplicamos por 0.2)
+  const factorSolar = placas ? 0.2 : 1;
 
-  let totalHoras = horasLuz + horasTV + horasAC + horasCal;
+  // 1. GRUPO LUZ Y TV (Usan el coeficiente antiguo 'rayo')
+  let horasRayo = (horasLuz + horasTV) * factorSolar;
 
-  if (placas) {
-    console.log("🌞 Placas solares activas: Reduciendo impacto al 20%");
-    totalHoras *= 0.2; 
+  if (horasRayo > 0) {
+    values['energia']['rayo'] = horasRayo;
+  } else {
+    delete values['energia']['rayo'];
   }
 
-  if (totalHoras > 0) {
-    values['energia']['rayo'] = totalHoras;
-  } else if (values['energia']['rayo'] !== undefined) {
-    delete values['energia']['rayo'];
+  // 2. AIRE ACONDICIONADO (Usa coeficiente 0.28)
+  let horasAire = horasAC * factorSolar;
+  if (horasAire > 0) {
+    values['energia']['aireAcondicionado'] = horasAire;
+  } else {
+    delete values['energia']['aireAcondicionado'];
+  }
+
+  // 3. CALEFACCIÓN (Usa coeficiente 0.28)
+  let horasCalef = horasCal * factorSolar;
+  if (horasCalef > 0) {
+    values['energia']['calefaccion'] = horasCalef;
+  } else {
+    delete values['energia']['calefaccion'];
   }
 
   updateList();
@@ -244,7 +260,7 @@ function acceptEnergiaValues() {
 
 function updateList() {
   const valuesList = document.getElementById('valuesList');
-  valuesList.innerHTML = ''; 
+  valuesList.innerHTML = '';
   let hasValues = false;
 
   for (const group in values) {
@@ -257,7 +273,7 @@ function updateList() {
         const listItem = document.createElement('li');
 
         let displayValue = value;
-        if (key === 'rayo') {
+        if (group === 'energia') {
           const placas = document.getElementById('placasSolares').checked;
           displayValue = `${value.toFixed(1)} ${placas ? ' (con placas)' : ''}`;
         }
@@ -278,7 +294,7 @@ function updateList() {
   }
 
   const resetBtn = document.getElementById('resetBtn');
-  if(resetBtn) resetBtn.style.display = hasValues ? 'block' : 'none';
+  if (resetBtn) resetBtn.style.display = hasValues ? 'block' : 'none';
 }
 
 function deleteValue(group, key) {
@@ -286,9 +302,10 @@ function deleteValue(group, key) {
   if (values[group] && values[group][key] !== undefined) {
     delete values[group][key];
 
-    if (key === 'rayo') {
+    if (group === 'energia' && Object.keys(values['energia']).length === 0) {
       document.getElementById('placasSolares').checked = false;
     }
+
     updateList();
     updateTotal();
   }
@@ -302,24 +319,23 @@ function computeEmissionFor(group, key, count) {
   let co2 = 0;
 
   if (group === 'contenedor') {
-    // Reciclaje
     co2 = COEFFICIENTS.co2_reciclar[key] || 0;
   } else {
-    // Consumo
-    // Verificamos si existe el coeficiente para evitar NaN
     if (COEFFICIENTS.co2[key] === undefined) {
-        console.warn(`⚠️ ALERTA: No existe coeficiente CO2 para: ${key}`);
-        return 0;
+      console.warn(`⚠️ ALERTA: No existe coeficiente CO2 para: ${key}`);
+      return 0;
     }
     co2 = COEFFICIENTS.co2[key];
   }
 
   // Energía
   if (key === 'rayo') {
-    // Consumo * 1000 Wh (1kW) * factor
-    return co2 * count * 1000;
+    // Lógica antigua para Luz y TV: Consumo * 1000 Wh * factor (0.0003)
+    return co2 * count;
   }
 
+  // Para calefacción y aire, el coeficiente 0.28 se aplica directamente a las horas
+  // (count aquí son las horas ya ajustadas por placas solares si las hubiera)
   return co2 * count;
 }
 
@@ -327,8 +343,8 @@ function computeEmissionFor(group, key, count) {
 function updateTotal() {
   console.log("🔄 Recalculando Totales...");
   let totalGastado = 0;
-  let totalEvitado = 0; 
-  let totalLitrosAgua = 0; 
+  let totalEvitado = 0;
+  let totalLitrosAgua = 0;
 
   // 1. CÁLCULO
   for (let group in values) {
@@ -337,7 +353,7 @@ function updateTotal() {
 
       // --- CO2 ---
       const emission = computeEmissionFor(group, key, count);
-      
+
       console.log(`   -> Item: ${key} (${count}). Emisión calc: ${emission.toFixed(4)}`);
 
       if (emission > 0) {
@@ -349,20 +365,23 @@ function updateTotal() {
       // --- AGUA ---
       // Solo sumamos agua si es consumo (no reciclaje)
       if (group !== 'contenedor') {
+        /*
         let litrosUnitarios = COEFFICIENTS.agua[key];
-        
+
         // Si no hay coeficiente de agua definido, usamos un fallback o 0
         if (litrosUnitarios === undefined) {
-            console.log(`   ⚠️ Sin dato de agua para ${key}, asumiendo 0.`);
-            litrosUnitarios = 0; 
+          console.log(`   ⚠️ Sin dato de agua para ${key}, asumiendo 0.`);
+          litrosUnitarios = 0;
         }
 
         if (key === 'rayo') {
           // Para energía: litros/Wh * horas * 1000Wh
-           totalLitrosAgua += litrosUnitarios * count * 1000;
+          totalLitrosAgua += litrosUnitarios * count;
         } else {
-           totalLitrosAgua += litrosUnitarios * count;
-        }
+          totalLitrosAgua += litrosUnitarios * count;
+        }*/
+
+        totalLitrosAgua = totalGastado * 270
       }
     }
   }
@@ -372,14 +391,14 @@ function updateTotal() {
   // 2. ACTUALIZACIÓN UI
   const gastadoSpan = document.getElementById('gastadoValor');
   const evitadoSpan = document.getElementById('evitadoValor');
-  
-  if(gastadoSpan) gastadoSpan.textContent = totalGastado.toFixed(2);
-  if(evitadoSpan) evitadoSpan.textContent = totalEvitado.toFixed(2);
+
+  if (gastadoSpan) gastadoSpan.textContent = totalGastado.toFixed(2);
+  if (evitadoSpan) evitadoSpan.textContent = totalEvitado.toFixed(2);
 
   // 3. PANELES DE IMPACTO
   const impactoEvitado = totalEvitado;
   const elCo2Kg = document.getElementById('impact_co2Kg');
-  if(elCo2Kg) elCo2Kg.textContent = impactoEvitado.toFixed(2);
+  if (elCo2Kg) elCo2Kg.textContent = impactoEvitado.toFixed(2);
 
   const ARBOL_POR_KG = 1 / 0.06;
   const COCHE_POR_KG = 1 / 12.8;
@@ -387,8 +406,8 @@ function updateTotal() {
   const elArboles = document.getElementById('impact_arboles');
   const elCoches = document.getElementById('impact_coches');
 
-  if(elArboles) elArboles.textContent = Math.round(impactoEvitado * ARBOL_POR_KG);
-  if(elCoches) elCoches.textContent = (impactoEvitado * COCHE_POR_KG).toFixed(1);
+  if (elArboles) elArboles.textContent = Math.round(impactoEvitado * ARBOL_POR_KG);
+  if (elCoches) elCoches.textContent = (impactoEvitado * COCHE_POR_KG).toFixed(1);
 
   // --- AGUA ---
   const LITROS_POR_DUCHA = 100;
@@ -398,9 +417,9 @@ function updateTotal() {
   const elDuchas = document.getElementById('impact_duchas');
   const elCamisetas = document.getElementById('impact_camisetas');
 
-  if(elAgua) elAgua.textContent = Math.round(totalLitrosAgua);
-  if(elDuchas) elDuchas.textContent = (totalLitrosAgua / LITROS_POR_DUCHA).toFixed(1);
-  if(elCamisetas) elCamisetas.textContent = (totalLitrosAgua / LITROS_POR_CAMISETA).toFixed(2);
+  if (elAgua) elAgua.textContent = Math.round(totalLitrosAgua);
+  if (elDuchas) elDuchas.textContent = (totalLitrosAgua / LITROS_POR_DUCHA).toFixed(1);
+  if (elCamisetas) elCamisetas.textContent = (totalLitrosAgua / LITROS_POR_CAMISETA).toFixed(2);
 }
 
 /**
@@ -413,8 +432,8 @@ function resetAll() {
     'coche': {},
     'energia': {},
     'contenedor': {},
-    'dispositivos':{},
-    'comida':{}
+    'dispositivos': {},
+    'comida': {}
   };
 
   document.querySelectorAll('input[type="range"]').forEach(input => {
