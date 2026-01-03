@@ -192,8 +192,24 @@
       </div>
 
       <div id="Comida" class="submenu-container">
-        <img src="img/iconos/carne.png" class="icon" title="Meat" onclick="openSliderBelowMenu('vaca', this)" alt="Meat">
+        <img src="img/iconos/pollo.png" class="icon" title="Chicken" onclick="openSliderBelowMenu('pollo', this)" alt="Chicken">
+        <img src="img/iconos/cerdo.png" class="icon" title="Pork" onclick="openSliderBelowMenu('cerdo', this)" alt="Pork">
+        <img src="img/iconos/carne.png" class="icon" title="Beef" onclick="openSliderBelowMenu('vaca', this)" alt="Beef">
         <img src="img/iconos/verduras.png" class="icon" title="Vegetables" onclick="openSliderBelowMenu('vegetal', this)" alt="Vegetables">
+        <img src="img/iconos/fruta.png" class="icon" title="Fruit" onclick="openSliderBelowMenu('fruta', this)" alt="Fruit">
+      </div>
+
+      <div id="pollo" class="slider-container">
+        <label>Chicken fillet portions: <span id="polloValue">0</span></label>
+        <input type="range" min="0" max="14" value="0" oninput="updateValue('pollo', this)">
+        <button class="accept-btn" onclick="acceptValue('pollo','comida')">Accept</button>
+        
+      </div>
+
+      <div id="cerdo" class="slider-container">
+        <label>Pork chop portions: <span id="cerdoValue">0</span></label>
+        <input type="range" min="0" max="14" value="0" oninput="updateValue('cerdo', this)">
+        <button class="accept-btn" onclick="acceptValue('cerdo','comida')">Accept</button>
       </div>
 
       <div id="vaca" class="slider-container">
@@ -207,6 +223,12 @@
         <label>Vegetable meals: <span id="vegetalValue">0</span></label>
         <input type="range" min="0" max="14" value="0" oninput="updateValue('vegetal', this)">
         <button class="accept-btn" onclick="acceptValue('vegetal','comida')">Accept</button>
+      </div>
+
+      <div id="fruta" class="slider-container">
+        <label>Pieces of fruit: <span id="frutaValue">0</span></label>
+        <input type="range" min="0" max="14" value="0" oninput="updateValue('fruta', this)">
+        <button class="accept-btn" onclick="acceptValue('fruta','comida')">Accept</button>
       </div>
 
       <div id="Dispositivos" class="submenu-container">
