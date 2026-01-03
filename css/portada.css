@@ -124,3 +124,57 @@
     transform: scale(1.1);
   }
 }
+
+/* -----------------------------
+   Responsive: breakpoints
+   ----------------------------- */
+
+/* Large tablets / small desktops */
+@media (max-width: 1024px) {
+  .portada-titulo {
+    font-size: 4rem;
+    margin-bottom: 3rem;
+  }
+  .banderas { gap: 1.8rem; }
+  .bandera { width: 50px; height: 34px; }
+}
+
+/* Tablets and large phones */
+@media (max-width: 768px) {
+  .portada {
+    padding: 1rem 1.25rem;
+  }
+  .portada-titulo {
+    font-size: 3rem;
+    margin-bottom: 2.4rem;
+    letter-spacing: 1px;
+  }
+  .logo-text { transform-origin: center; }
+  .banderas { gap: 1.2rem; }
+  .bandera { width: 46px; height: 32px; }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+  .portada-titulo {
+    font-size: 2.2rem;
+    margin-bottom: 1.4rem;
+    line-height: 1.05;
+    letter-spacing: 0.6px;
+    text-shadow: 0 0 18px rgba(0,0,0,0.25);
+  }
+  .portada {
+    background-size: 300% 300%;
+  }
+  .banderas {
+    gap: 0.9rem;
+    margin-top: 1rem;
+  }
+  .bandera {
+    width: 40px;
+    height: 28px;
+    border-radius: 6px;
+  }
+  .logo-text { font-size: 1.05em; }
+}
+
