@@ -413,8 +413,8 @@ function updateTotal() {
   const gastadoSpan = document.getElementById('gastadoValor');
   const evitadoSpan = document.getElementById('evitadoValor');
   
-  gastadoSpan.textContent = totalGastado;
-  evitadoSpan.textContent = totalEvitado;
+  gastadoSpan.textContent = totalGastado.toFixed(2);
+  evitadoSpan.textContent = totalEvitado.toFixed(2);
 
 
 
@@ -572,3 +572,12 @@ function toggleInfo(infoId) {
 
 //INICIALIZA TODO
 resetAll();
+
+// FADE-IN AL CARGAR
+window.addEventListener('load', () => {
+  // Pequeño retraso para asegurar que los estilos estén aplicados
+  setTimeout(() => {
+    document.body.classList.add('fade-in');
+  }, 50);
+});
+
