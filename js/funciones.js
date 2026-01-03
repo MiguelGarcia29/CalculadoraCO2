@@ -7,7 +7,7 @@ let estadoBoton = false;
 
 // COEFICIENTES
 const COEFFICIENTS = {
-  // Coeficientes de emisión (kg CO₂ por unidad/km)
+  // Coeficientes de emisión (kg CO2 por unidad/km)
   co2: {
     botellaVidrio: 0.25,
     botellaPlastico: 0.04,
@@ -27,7 +27,7 @@ const COEFFICIENTS = {
     fruta: 0.048,
     vegetal: 0.09,
   },
-  // Coeficientes de ahorro (kg CO₂ ahorrado por unidad reciclada)
+  // Coeficientes de ahorro (kg CO2 ahorrado por unidad reciclada)
   co2_reciclar: {
     botellaVidrioRec: -0.25,
     botellaPlasticoRec: -0.07,
@@ -392,8 +392,8 @@ function updateTotal() {
   const gastadoSpan = document.getElementById('gastadoValor');
   const evitadoSpan = document.getElementById('evitadoValor');
 
-  if (gastadoSpan) gastadoSpan.textContent = totalGastado.toFixed(2);
-  if (evitadoSpan) evitadoSpan.textContent = totalEvitado.toFixed(2);
+  if (gastadoSpan) gastadoSpan.textContent = `${totalGastado.toFixed(2)} kg de CO₂`;
+  if (evitadoSpan) evitadoSpan.textContent = `${totalEvitado.toFixed(2)} kg de CO₂`;
 
   // 3. PANELES DE IMPACTO
   const impactoEvitado = totalEvitado;
