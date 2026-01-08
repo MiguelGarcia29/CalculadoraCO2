@@ -9,14 +9,14 @@ let estadoBoton = false;
 const COEFFICIENTS = {
   // Coeficientes de emisión (kg CO2 por unidad/km)
   co2: {
-    botellaVidrio: 0.25,
-    botellaPlastico: 0.04,
+    botellaVidrio: 0.35,
+    botellaPlastico: 0.09,
     Carton: 0.18,
-    cocheIndividual: 0.15,
-    cocheBus: 0.9,
+    cocheIndividual: 0.19,
+    cocheBus: 0.08,
     moto: 0.09,
     camion: 1.2,
-    rayo: 0.4, // kg CO2 / Wh
+    rayo: 0.35, // kg CO2 / Wh
     aireAcondicionado: 0.8,
     calefaccion: 0.8,
     movil: 0.002,
@@ -29,9 +29,9 @@ const COEFFICIENTS = {
   },
   // Coeficientes de ahorro (kg CO2 ahorrado por unidad reciclada)
   co2_reciclar: {
-    botellaVidrioRec: -0.25,
-    botellaPlasticoRec: -0.07,
-    CartonRec: -0.11,
+    botellaVidrioRec: -0.15,
+    botellaPlasticoRec: -0.04,
+    CartonRec: -0.04,
   },
   // Coeficientes de impacto en agua (litros de agua por unidad/acción)
   agua: {
@@ -465,15 +465,15 @@ const infoTexts = {
   },
   "info-arboles": {
     title: "Árboles equivalentes",
-    text: "Los árboles actúan como pulmones del planeta. Este valor representa cuántos árboles serían necesarios para compensar las emisiones."
+    text: "Los árboles actúan como pulmones del planeta. Este valor representa cuántos árboles serían necesarios para compensar las emisiones. Un solo árbol absorve al día 0.06 kg de CO2"
   },
   "info-coches": {
     title: "Coches fuera de circulación",
-    text: "Este indicador muestra cuántos coches deberían dejar de circular durante un día para lograr el mismo impacto positivo."
+    text: "Este indicador muestra cuántos coches deberían dejar de circular durante un día para lograr el mismo impacto positivo. Se estima que los coches producen de media 12.8 kg de CO2 al dia."
   },
   "info-agua": {
     title: "Consumo de agua",
-    text: "El agua dulce es un recurso limitado. Cada producto requiere grandes cantidades de agua para su fabricación (Huella hídrica)."
+    text: "El agua dulce es un recurso limitado. Cada producto requiere grandes cantidades de agua para su fabricación (Huella hídrica). Producir un kg de CO2 hace que se llegue a desperdiciar hasta 270 litros"
   },
   "info-duchas": {
     title: "Duchas equivalentes",

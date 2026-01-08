@@ -9,14 +9,14 @@ let estadoBoton = false;
 const COEFFICIENTS = {
   // Coeficientes de emisión (kg CO₂ por unidad/km)
   co2: {
-    botellaVidrio: 0.25,
-    botellaPlastico: 0.04,
+    botellaVidrio: 0.35,
+    botellaPlastico: 0.09,
     Carton: 0.18,
-    cocheIndividual: 0.15,
-    cocheBus: 0.9,
+    cocheIndividual: 0.19,
+    cocheBus: 0.08,
     moto: 0.09,
     camion: 1.2,
-    rayo: 0.4, // kg CO2 / Wh
+    rayo: 0.35, // kg CO2 / Wh
     aireAcondicionado: 0.8,
     calefaccion: 0.8,
     movil: 0.002,
@@ -27,11 +27,11 @@ const COEFFICIENTS = {
     fruta: 0.048,
     vegetal: 0.09,
   },
-  // Coeficientes de ahorro (kg CO₂ ahorrado por unidad reciclada)
+  // Coeficientes de ahorro (kg CO2 ahorrado por unidad reciclada)
   co2_reciclar: {
-    botellaVidrioRec: -0.25,
-    botellaPlasticoRec: -0.07,
-    CartonRec: -0.11,
+    botellaVidrioRec: -0.15,
+    botellaPlasticoRec: -0.04,
+    CartonRec: -0.04,
   },
   // Coeficientes de impacto en agua (litros de agua por unidad/acción)
   agua: {
@@ -466,15 +466,15 @@ const infoTexts = {
   },
   "info-arboles": {
     title: "Equivalent trees",
-    text: "Trees act as the lungs of the planet. This value represents how many trees would be needed to offset the emissions."
+    text: "Trees act as the lungs of the planet. This value represents how many trees would be needed to offset the emissions. A single tree absorbs 0.06 kg of CO2 per day"
   },
   "info-coches": {
     title: "Cars taken off the road",
-    text: "This indicator shows how many cars would need to stop driving for one day to achieve the same positive impact."
+    text: "This indicator shows how many cars would need to stop driving for one day to achieve the same positive impact. It is estimated that cars produce an average of 12.8 kg of CO2 per day."
   },
   "info-agua": {
     title: "Water consumption",
-    text: "Fresh water is a limited resource. Each product requires large amounts of water for its production (water footprint)."
+    text: "Fresh water is a limited resource. Each product requires large amounts of water for its production (water footprint). Producing one kg of CO2 results in the waste of up to 270 liters"
   },
   "info-duchas": {
     title: "Equivalent showers",
