@@ -146,6 +146,8 @@
           onclick="openSliderBelowMenu('cocheBus', this)" alt="Bus">
         <img src="img/iconos/moto.png" class="icon" title="Motorcycle" data-group="Transporte"
           onclick="openSliderBelowMenu('moto', this)" alt="Motorcycle">
+          <img src="img/iconos/cocheElectrico.png" class="icon" title="Electric Car" data-group="Transporte"
+          onclick="openSliderBelowMenu('cocheElectrico', this)" alt="Electric Car">
       </div>
 
       <!-- SLIDERS -->
@@ -190,6 +192,11 @@
         <label>Truck (km): <span id="camionValue">0</span></label>
         <input type="range" min="0" max="100" value="0" oninput="updateValue('camion', this)">
         <button class="accept-btn" onclick="acceptValue('camion','coche')">Accept</button>
+      </div>
+      <div id="cocheElectrico" class="slider-container">
+        <label>Electric Car (km): <span id="cocheElectricoValue">0</span></label>
+        <input type="range" min="0" max="100" value="0" oninput="updateValue('cocheElectrico', this)">
+        <button class="accept-btn" onclick="acceptValue('cocheElectrico','coche')">Aceptar</button>
       </div>
 
       <div id="Comida" class="submenu-container">
@@ -318,6 +325,9 @@
 
         <div class="box-impact avoided">
           <strong>Avoided: </strong><span id="evitadoValor">0</span>
+        </div>
+        <div class="box-impact balanced">
+          <strong>Balance: </strong><span id="balanceValor">0</span>
         </div>
       </div>
 

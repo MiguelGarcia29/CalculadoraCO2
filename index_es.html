@@ -147,6 +147,8 @@
           onclick="openSliderBelowMenu('cocheBus', this)" alt="Bus">
         <img src="img/iconos/moto.png" class="icon" title="Moto" data-group="Transporte"
           onclick="openSliderBelowMenu('moto', this)" alt="Moto">
+        <img src="img/iconos/cocheElectrico.png" class="icon" title="Coche Electrico" data-group="Transporte"
+          onclick="openSliderBelowMenu('cocheElectrico', this)" alt="Coche Electrico">
       </div>
 
       <!-- SLIDERS -->
@@ -192,21 +194,30 @@
         <input type="range" min="0" max="100" value="0" oninput="updateValue('camion', this)">
         <button class="accept-btn" onclick="acceptValue('camion','coche')">Aceptar</button>
       </div>
+      <div id="cocheElectrico" class="slider-container">
+        <label>Coche Eléctrico (km): <span id="cocheElectricoValue">0</span></label>
+        <input type="range" min="0" max="100" value="0" oninput="updateValue('cocheElectrico', this)">
+        <button class="accept-btn" onclick="acceptValue('cocheElectrico','coche')">Aceptar</button>
+      </div>
 
       <div id="Comida" class="submenu-container">
-        <img src="img/iconos/pollo.png" class="icon" title="Pollo" onclick="openSliderBelowMenu('pollo', this)" alt="Pollo">
-        <img src="img/iconos/cerdo.png" class="icon" title="Cerdo" onclick="openSliderBelowMenu('cerdo', this)" alt="Cerdo">
+        <img src="img/iconos/pollo.png" class="icon" title="Pollo" onclick="openSliderBelowMenu('pollo', this)"
+          alt="Pollo">
+        <img src="img/iconos/cerdo.png" class="icon" title="Cerdo" onclick="openSliderBelowMenu('cerdo', this)"
+          alt="Cerdo">
         <img src="img/iconos/vaca.png" class="icon" title="Vaca" onclick="openSliderBelowMenu('vaca', this)" alt="Vaca">
-  
-        <img src="img/iconos/verduras.png" class="icon" title="Vegetal" onclick="openSliderBelowMenu('vegetal', this)" alt="Vegetal">
-        <img src="img/iconos/fruta.png" class="icon" title="Fruta" onclick="openSliderBelowMenu('fruta', this)" alt="Fruta">
+
+        <img src="img/iconos/verduras.png" class="icon" title="Vegetal" onclick="openSliderBelowMenu('vegetal', this)"
+          alt="Vegetal">
+        <img src="img/iconos/fruta.png" class="icon" title="Fruta" onclick="openSliderBelowMenu('fruta', this)"
+          alt="Fruta">
       </div>
 
       <div id="pollo" class="slider-container">
         <label>Raciones de pechugas de pollo: <span id="polloValue">0</span></label>
         <input type="range" min="0" max="14" value="0" oninput="updateValue('pollo', this)">
         <button class="accept-btn" onclick="acceptValue('pollo','comida')">Aceptar</button>
-        
+
       </div>
 
       <div id="cerdo" class="slider-container">
@@ -234,9 +245,10 @@
       </div>
 
       <div id="Dispositivos" class="submenu-container">
-        <img src="img/iconos/movil.png" class="icon" title="Móvil" onclick="openSliderBelowMenu('movil', this)" alt="Móvil">
-        <img src="img/iconos/ordenador.png" class="icon" title="Ordenador" onclick="openSliderBelowMenu('ordenador', this)"
-          alt="Ordenador">
+        <img src="img/iconos/movil.png" class="icon" title="Móvil" onclick="openSliderBelowMenu('movil', this)"
+          alt="Móvil">
+        <img src="img/iconos/ordenador.png" class="icon" title="Ordenador"
+          onclick="openSliderBelowMenu('ordenador', this)" alt="Ordenador">
       </div>
 
       <div id="movil" class="slider-container">
@@ -314,6 +326,9 @@
 
         <div class="box-impact avoided">
           <strong>Evitado: </strong><span id="evitadoValor">0</span>
+        </div>
+        <div class="box-impact balanced">
+          <strong>Balance: </strong><span id="balanceValor">0</span>
         </div>
       </div>
 

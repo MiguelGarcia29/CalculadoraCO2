@@ -197,6 +197,12 @@ header {
   border: 1px solid #b2f2bb;
 }
 
+.balanced {
+  background-color: #fafafa;
+  color: #000000;
+  border: 2px solid #3e3e3e9b;
+}
+
 /* --- Panel Izquierdo (Infografía) --- */
 .infografia-lateral {
   background-color: #ffffff;

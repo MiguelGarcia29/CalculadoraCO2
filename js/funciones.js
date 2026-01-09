@@ -13,6 +13,7 @@ const COEFFICIENTS = {
     botellaPlastico: 0.09,
     Carton: 0.18,
     cocheIndividual: 0.19,
+    cocheElectrico: 0.063,
     cocheBus: 0.08,
     moto: 0.09,
     camion: 1.2,
@@ -62,6 +63,7 @@ const nameMapping = {
   'cocheIndividual': 'Coche (KM)',
   'cocheBus': 'Autobús (KM)',
   'moto': 'Moto (KM)',
+  'cocheElectrico': 'Coche Eléctrico (KM)',
   // Energía
   'rayo': 'Consumo Eléctrico (H)',
   'aireAcondicionado': 'Aire Acondicionado (H)',
@@ -345,6 +347,7 @@ function updateTotal() {
   let totalGastado = 0;
   let totalEvitado = 0;
   let totalLitrosAgua = 0;
+  let balance = 0;
 
   // 1. CÁLCULO
   for (let group in values) {
@@ -386,15 +389,20 @@ function updateTotal() {
     }
   }
 
+  //VALOR ABSOLUTO PARA QUE QUEDE EL N POSITIVO
+  balance = Math.abs(totalGastado-totalEvitado)
+
   console.log(`📊 TOTALES -> CO2 Gastado: ${totalGastado}, CO2 Evitado: ${totalEvitado}, Agua: ${totalLitrosAgua}`);
 
   // 2. ACTUALIZACIÓN UI
   const gastadoSpan = document.getElementById('gastadoValor');
   const evitadoSpan = document.getElementById('evitadoValor');
+  const balanceValor = document.getElementById('balanceValor');
 
   if (gastadoSpan) gastadoSpan.textContent = `${totalGastado.toFixed(2)} kg de CO₂`;
   if (evitadoSpan) evitadoSpan.textContent = `${totalEvitado.toFixed(2)} kg de CO₂`;
-
+  if (balanceValor) balanceValor.textContent = `${balance.toFixed(2)} kg de CO₂`;
+  
   // 3. PANELES DE IMPACTO
   const impactoEvitado = totalEvitado;
   const elCo2Kg = document.getElementById('impact_co2Kg');
